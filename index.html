@@ -19,7 +19,7 @@
     <link rel="apple-touch-icon" href="app-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -39,6 +39,37 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* Language switcher */
+        .lang-nav {
+            position: fixed;
+            top: 16px;
+            right: 20px;
+            display: flex;
+            gap: 4px;
+            z-index: 10;
+        }
+
+        .lang-btn {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #7A767B;
+            background: white;
+            border: 1px solid #E0E0E0;
+            padding: 5px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            text-decoration: none;
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            color: #8396D1;
+            border-color: #8396D1;
+            background: #F5F6FB;
+        }
+
+        /* Hero */
         .hero {
             max-width: 480px;
             width: 100%;
@@ -55,18 +86,22 @@
         }
 
         h1 {
-            font-family: 'Fraunces', Georgia, serif;
-            font-style: italic;
+            font-family: 'Quicksand', sans-serif;
             font-weight: 700;
-            font-size: 2.2rem;
-            color: #8396D1;
+            font-size: 2rem;
+            color: #2D2D2D;
             margin-bottom: 12px;
-            line-height: 1.15;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        h1 span {
+            color: #8396D1;
         }
 
         .tagline {
             font-size: 1.05rem;
-            color: #2D2D2D;
+            color: #7A767B;
             margin-bottom: 32px;
             line-height: 1.55;
         }
@@ -74,9 +109,14 @@
         .app-store-badge {
             display: inline-block;
             margin-bottom: 10px;
+            transition: opacity 0.15s ease;
         }
 
-        .app-store-badge svg {
+        .app-store-badge:hover {
+            opacity: 0.8;
+        }
+
+        .app-store-badge img {
             height: 48px;
             width: auto;
         }
@@ -84,9 +124,9 @@
         .free-note {
             font-size: 0.82rem;
             color: #7A767B;
-            margin-bottom: 0;
         }
 
+        /* Details */
         .details {
             max-width: 480px;
             width: 100%;
@@ -110,6 +150,7 @@
 
         .detail-text em {
             font-family: 'Fraunces', Georgia, serif;
+            font-style: italic;
             font-size: 1rem;
             color: #8396D1;
         }
@@ -165,69 +206,103 @@
             text-decoration: underline;
         }
 
+        /* Hide inactive languages */
+        [data-lang] { display: none; }
+        [data-lang="en"] { display: block; }
+        .app-store-badge[data-lang] { display: none; }
+        .app-store-badge[data-lang="en"] { display: inline-block; }
+
         @media (max-width: 480px) {
-            .hero {
-                padding: 56px 0 40px;
-            }
-
-            h1 {
-                font-size: 1.9rem;
-            }
-
-            .app-icon {
-                width: 96px;
-                height: 96px;
-                border-radius: 22px;
-            }
+            .hero { padding: 56px 0 40px; }
+            h1 { font-size: 1.75rem; }
+            .app-icon { width: 96px; height: 96px; border-radius: 22px; }
+            .lang-nav { top: 12px; right: 12px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- HERO: Above the fold on mobile -->
+    <!-- Language switcher -->
+    <nav class="lang-nav">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('fr')">FR</button>
+        <button class="lang-btn" onclick="setLang('es')">ES</button>
+    </nav>
+
+    <!-- HERO -->
     <div class="hero">
         <img src="app-icon.png" alt="Dear app icon" class="app-icon">
-        <h1>Dear: Stay in Touch</h1>
-        <p class="tagline">One gentle nudge a day to text the people you care about.</p>
 
-        <a href="https://apps.apple.com/app/id6760280035" class="app-store-badge" aria-label="Download on the App Store">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40" role="img" aria-label="Download on the App Store">
-                <rect width="120" height="40" rx="6" fill="#000"/>
-                <text x="60" y="13" text-anchor="middle" fill="#fff" font-family="-apple-system, Helvetica, Arial, sans-serif" font-size="5.5" letter-spacing="0.3">Download on the</text>
-                <text x="60" y="27" text-anchor="middle" fill="#fff" font-family="-apple-system, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" letter-spacing="-0.2">App Store</text>
-                <g transform="translate(10, 7) scale(0.55)" fill="#fff">
-                    <path d="M18.9 14.3C18.9 10.8 21.6 9.2 21.7 9.1 20.1 6.8 17.7 6.5 16.8 6.5 14.7 6.3 12.8 7.7 11.8 7.7 10.7 7.7 9.2 6.5 7.4 6.5 5.1 6.6 3 7.8 1.8 9.8-0.7 13.8 1.1 19.7 3.5 22.9 4.7 24.5 6.1 26.2 7.9 26.2 9.6 26.1 10.3 25.1 12.4 25.1 14.4 25.1 15.1 26.2 16.9 26.2 18.8 26.1 20 24.5 21.2 22.9 22 21.1 22.7 19.5 22.7 19.5 22.7 19.5 22.7 19.5 20.9 14.8 18.9 14.3zM15.5 4.5C16.5 3.3 17.2 1.6 17 0 15.5 0.1 13.8 0.9 12.7 2.1 11.7 3.1 10.9 4.9 11.1 6.5 12.8 6.6 14.5 5.7 15.5 4.5z"/>
-                </g>
-            </svg>
+        <h1>
+            <span data-lang="en"><span>Dear:</span> Stay in Touch</span>
+            <span data-lang="fr"><span>Dear:</span> Garde le lien</span>
+            <span data-lang="es"><span>Dear:</span> Mantente en contacto</span>
+        </h1>
+
+        <p class="tagline">
+            <span data-lang="en">One gentle nudge a day to text the people you care about.</span>
+            <span data-lang="fr">Un rappel doux par jour pour prendre des nouvelles de ceux qui comptent.</span>
+            <span data-lang="es">Un recordatorio diario para escribirle a las personas que te importan.</span>
+        </p>
+
+        <a href="https://apps.apple.com/app/id6760280035" class="app-store-badge" data-lang="en" aria-label="Download on the App Store">
+            <img src="app-store-badge.svg" alt="Download on the App Store">
         </a>
-        <p class="free-note">Free. Private. No accounts needed.</p>
+        <a href="https://apps.apple.com/app/id6760280035" class="app-store-badge" data-lang="fr" aria-label="Telecharger dans l'App Store">
+            <img src="app-store-badge-fr.svg" alt="Telecharger dans l'App Store">
+        </a>
+        <a href="https://apps.apple.com/app/id6760280035" class="app-store-badge" data-lang="es" aria-label="Descargar en el App Store">
+            <img src="app-store-badge-es.svg" alt="Descargar en el App Store">
+        </a>
+
+        <p class="free-note">
+            <span data-lang="en">Free. Private. No accounts needed.</span>
+            <span data-lang="fr">Gratuit. Pas de compte. Tes donnees restent sur ton telephone.</span>
+            <span data-lang="es">Gratis. Privado. Sin cuentas.</span>
+        </p>
     </div>
 
-    <!-- DETAILS: Below the fold -->
+    <!-- DETAILS -->
     <div class="details">
         <div class="divider"></div>
 
         <p class="detail-text">
-            Your nudge might come from <em>Sherlock Holmes</em>, a <em>haiku poet</em>, or a <em>French fox named Le Renard</em>. 15+ voice personas, each with a distinct personality.
+            <span data-lang="en">Your nudge might come from <em>Sherlock Holmes</em>, <em>Don Quijote</em>, or <em>Marcel Proust</em>. 15+ voice personas, each with a distinct personality.</span>
+            <span data-lang="fr">Ton rappel peut venir de <em>Sherlock Holmes</em>, <em>Don Quichotte</em>, ou <em>Marcel Proust</em>. Plus de 15 voix, chacune avec sa propre personnalite.</span>
+            <span data-lang="es">Tu recordatorio puede venir de <em>Sherlock Holmes</em>, <em>Don Quijote</em>, o <em>Marcel Proust</em>. Mas de 15 voces, cada una con su propia personalidad.</span>
         </p>
         <p class="detail-text">
-            Tap to text, call, or FaceTime. Mark done. That's it.
+            <span data-lang="en">Tap to text, call, or FaceTime. Mark done. That's it.</span>
+            <span data-lang="fr">Envoie un texto, appelle ou FaceTime. Marque comme fait. C'est tout.</span>
+            <span data-lang="es">Envia un mensaje, llama o haz FaceTime. Marca como hecho. Eso es todo.</span>
         </p>
 
         <div class="pills">
             <span class="pill">English</span>
             <span class="pill">Fran&ccedil;ais</span>
             <span class="pill">Espa&ntilde;ol</span>
-            <span class="pill">No tracking</span>
-            <span class="pill">On-device only</span>
+            <span class="pill" data-lang="en">No tracking</span>
+            <span class="pill" data-lang="fr">Pas de suivi</span>
+            <span class="pill" data-lang="es">Sin rastreo</span>
+            <span class="pill" data-lang="en">On-device only</span>
+            <span class="pill" data-lang="fr">Sur l'appareil</span>
+            <span class="pill" data-lang="es">Solo en tu dispositivo</span>
             <span class="pill">iOS 17+</span>
         </div>
 
         <div class="divider"></div>
 
         <div class="links">
-            <a href="mailto:dearstayintouch@gmail.com">Press</a>
-            <a href="https://elsewhereindex.github.io/friendo/privacy">Privacy</a>
+            <a href="mailto:dearstayintouch@gmail.com">
+                <span data-lang="en">Press</span>
+                <span data-lang="fr">Presse</span>
+                <span data-lang="es">Prensa</span>
+            </a>
+            <a href="https://elsewhereindex.github.io/friendo/privacy">
+                <span data-lang="en">Privacy</span>
+                <span data-lang="fr">Confidentialite</span>
+                <span data-lang="es">Privacidad</span>
+            </a>
         </div>
 
         <footer>
@@ -235,6 +310,34 @@
             <p><a href="mailto:dearstayintouch@gmail.com">dearstayintouch@gmail.com</a></p>
         </footer>
     </div>
+
+    <script>
+        function setLang(lang) {
+            // Update all data-lang elements
+            document.querySelectorAll('[data-lang]').forEach(function(el) {
+                if (el.tagName === 'A' && el.classList.contains('app-store-badge')) {
+                    el.style.display = el.getAttribute('data-lang') === lang ? 'inline-block' : 'none';
+                } else if (el.tagName === 'SPAN' && el.parentElement.classList.contains('pill')) {
+                    el.style.display = el.getAttribute('data-lang') === lang ? 'inline' : 'none';
+                } else {
+                    el.style.display = el.getAttribute('data-lang') === lang ? 'block' : 'none';
+                }
+            });
+
+            // Language pills (English/Francais/Espanol) always visible
+            document.querySelectorAll('.pill').forEach(function(pill) {
+                if (!pill.hasAttribute('data-lang')) {
+                    pill.style.display = 'inline-block';
+                }
+            });
+
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(function(btn) {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+    </script>
 
 </body>
 </html>
