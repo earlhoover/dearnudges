@@ -300,6 +300,48 @@
   .tab-item.active { color: var(--accent); }
   .tab-item svg { width: 22px; height: 22px; }
 
+  .app-icon-ref {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 20px auto 0;
+    max-width: 380px;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 16px;
+  }
+  .app-icon-ref img {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+  }
+  .app-icon-ref .label {
+    font-size: 12px;
+    color: #999;
+    line-height: 1.4;
+  }
+  .app-icon-ref .label strong {
+    color: #ccc;
+    font-weight: 600;
+  }
+  .accent-swatch-row {
+    display: flex;
+    gap: 8px;
+    margin: 12px auto 0;
+    max-width: 380px;
+    align-items: center;
+  }
+  .accent-swatch-row .sw {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    border: 1.5px solid rgba(255,255,255,0.15);
+  }
+  .accent-swatch-row .sw-label {
+    font-size: 11px;
+    color: #888;
+  }
+
   .divider {
     height: 40px;
   }
@@ -308,8 +350,8 @@
 <body>
 
 <div class="page-header">
-  <h1>Dear Color Mockups - Round 3</h1>
-  <p>Subtle variations on Nile Blue. Small moves only.</p>
+  <h1>Dear Color Mockups - Round 3b</h1>
+  <p>With app icon for comparison. Icon bg is #8295D0, accent is #5C85D6.</p>
 </div>
 
 <nav class="color-nav" id="nav"></nav>
@@ -326,46 +368,46 @@ const colors = [
     current: true
   },
   {
+    name: "Icon Match",
+    hex: "#8295D0",
+    darkHex: "#9AAEDE",
+    desc: "Exact app icon background color. Would make splash-to-app seamless."
+  },
+  {
+    name: "Icon + Vivid",
+    hex: "#7A90D6",
+    darkHex: "#94A8E2",
+    desc: "Splits the difference: icon's softness with a bit more saturation."
+  },
+  {
     name: "Nile + White",
     hex: "#6990DC",
     darkHex: "#85A8E8",
-    desc: "Same hue, just a touch of white mixed in. Slightly brighter, less heavy."
-  },
-  {
-    name: "Nile + Blue",
-    hex: "#5080E0",
-    darkHex: "#6E9AEA",
-    desc: "Pushed bluer, less gray-purple. Crisper, more confident blue."
-  },
-  {
-    name: "Nile + Both",
-    hex: "#6088E0",
-    darkHex: "#7CA0EA",
-    desc: "More blue AND more white. Brighter and bluer. Clean."
+    desc: "Current hue, dash of white. Brighter but keeps the energy."
   },
   {
     name: "Nile Cooled",
     hex: "#5B82DE",
     darkHex: "#789EE8",
-    desc: "Tiny shift: a hair cooler and a hair brighter. Barely different but less muddy."
+    desc: "Barely different from current. A hair cooler, less muddy."
+  },
+  {
+    name: "Nile + Blue",
+    hex: "#5080E0",
+    darkHex: "#6E9AEA",
+    desc: "Pushed bluer, less gray-purple. Crisper, more confident."
   },
   {
     name: "Nile Warmed",
     hex: "#6584D0",
     darkHex: "#809DD8",
-    desc: "Slightly warmer and softer. Less electric, more ink-on-paper."
+    desc: "Softer, less electric. More ink-on-paper."
   },
   {
-    name: "Nile Vivid",
-    hex: "#5478E0",
-    darkHex: "#7094EA",
-    desc: "Same lightness, more saturation. More punch, more presence."
-  },
-  {
-    name: "Nile Deep",
-    hex: "#5578CC",
-    darkHex: "#7494DC",
-    desc: "A touch darker and more blue. Quieter, more serious. Like a navy envelope."
+    name: "Halfway",
+    hex: "#6F8DD3",
+    darkHex: "#8AA5E0",
+    desc: "Exactly between current accent and icon. The compromise."
   }
 ];
 
@@ -461,6 +503,14 @@ function renderMockup(c, i) {
       </div>
     </div>
 
+    <div class="app-icon-ref">
+      <img src="app-icon.png" alt="Dear app icon">
+      <div class="label"><strong>App icon bg: #8295D0</strong><br>Accent in this mockup: ${c.hex}</div>
+    </div>
+    <div class="accent-swatch-row">
+      <div class="sw" style="background:#8295D0"></div><span class="sw-label">Icon</span>
+      <div class="sw" style="background:${c.hex}"></div><span class="sw-label">Accent</span>
+    </div>
     <div class="divider"></div>
   </div>`;
 }
