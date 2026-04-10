@@ -409,6 +409,8 @@
   <span class="dot" style="background:#7A90D6"></span><strong>Fill color</strong> (varies per option) for filled buttons, icons, decorative elements
 </div>
 
+<div id="mockups"></div>
+
 <script>
 const options = [
   {
@@ -576,11 +578,10 @@ function render(o, i) {
   </div>`;
 }
 
-const container = document.createElement('div');
+const container = document.getElementById('mockups');
 options.forEach((o, idx) => {
   container.innerHTML += render(o, idx + 1);
 });
-document.body.appendChild(container);
 </script>
 
 </body>
