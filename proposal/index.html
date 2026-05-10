@@ -524,13 +524,11 @@
       <div class="row"><span class="label">Annual recurring revenue (ARR)</span><span class="value" id="arrOut">$51,000</span></div>
       <div class="row"><span class="label">Implied sale price (ARR × multiple)</span><span class="value" id="impliedSaleOut">$255,000</span></div>
       <div class="row"><span class="label">Cut B rate (auto)</span><span class="value" id="rateOut">0% (below $5K threshold)</span></div>
-      <div class="row divider"><span class="label">Cut B gross to your portage account</span><span class="value" id="cutBGrossOut">$0</span></div>
-      <div class="row highlight"><span class="label">Cut B net to your bank, monthly</span><span class="value" id="cutBNetOut">$0</span></div>
-      <div class="row divider"><span class="label">Cut A gross at implied sale</span><span class="value" id="cutAGrossOut">$20,400</span></div>
-      <div class="row highlight"><span class="label">Cut A net to your bank, today's structure</span><span class="value" id="cutANetOut">~$7,752</span></div>
+      <div class="row highlight divider"><span class="label">Cut B monthly</span><span class="value" id="cutBGrossOut">$0</span></div>
+      <div class="row highlight divider"><span class="label">Cut A at implied sale</span><span class="value" id="cutAGrossOut">$20,400</span></div>
 
       <div class="calc-assumptions">
-        Assumptions: blended ARPU $2.50/month per subscriber (mix of $2.99/mo and $14.99/yr plans), Apple's 15% small-business platform cut, French tax leakage ~62% on payouts via portage salarial. Sale price is computed as ARR &times; the multiple slider; 4-6x is the median range for small consumer subscription apps in 2025-2026, with strategic acquisitions reaching 15-20x+. Converting to BSPCE through a French SAS subsidiary in Q4 2026 or Q1 2027 would cut the tax leakage roughly in half, doubling the net figures shown.
+        Figures shown are gross. Assumptions: blended ARPU $2.50/month per subscriber (mix of $2.99/mo and $14.99/yr plans), Apple's 15% small-business platform cut. Sale price is computed as ARR &times; the multiple; 4-6x is the median range for small consumer subscription apps in 2025-2026, with strategic acquisitions reaching 15-20x+. As with any compensation, French income tax and social charges apply at standard rates on the gross figures above; the BSPCE conversion planned for Q4 2026 / Q1 2027 is structured to materially reduce that burden.
       </div>
     </div>
 
@@ -544,7 +542,7 @@
 
     <h2>Cut A · if/when Dear is sold</h2>
     <p>Your % of net proceeds if/when Dear is sold. Sale here means a sale of Dear specifically (the app, the brand, the IP, the user base, the App Store and Play Store listings, anything Dear-related), not a sale of Elsewhere Index LLC. Net = sale price minus broker fees, legal costs, and any Dear-related debt outstanding. If Dear is never sold, this is zero.</p>
-    <p class="small">In Q4 2026 or Q1 2027, if Dear has real revenue, we revisit converting this to BSPCE through a French SAS subsidiary. Same percentage, roughly 30% all-in French tax instead of ~62%. Roughly doubles your net on the same sale event.</p>
+    <p class="small">In Q4 2026 or Q1 2027, if Dear has real revenue, we revisit converting this to BSPCE through a French SAS subsidiary, a tax-optimized structure that materially improves your take-home on payouts.</p>
 
     <hr class="rule">
 
@@ -720,9 +718,7 @@
         rateText = eq.cutB + '% (between $5K and $25K MRR)';
       }
 
-      var cutBNet = cutBGross * FRENCH_NET;
       var cutAGross = sale * (eq.cutA / 100);
-      var cutANet = cutAGross * FRENCH_NET;
 
       var callout = document.getElementById('thresholdCallout');
       if (aboveFloor) {
@@ -737,9 +733,7 @@
       document.getElementById('impliedSaleOut').textContent = fmt(sale);
       document.getElementById('rateOut').textContent = rateText;
       document.getElementById('cutBGrossOut').textContent = fmt(cutBGross) + (cutBGross > 0 ? '/mo' : '');
-      document.getElementById('cutBNetOut').textContent = (cutBNet > 0 ? '~' : '') + fmt(cutBNet) + (cutBNet > 0 ? '/mo' : '');
       document.getElementById('cutAGrossOut').textContent = fmt(cutAGross);
-      document.getElementById('cutANetOut').textContent = '~' + fmt(cutANet);
     }
 
     var inputs = ['users', 'subRate', 'multiple'];
