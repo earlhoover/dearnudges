@@ -156,6 +156,37 @@
       font-weight: 600;
     }
 
+    .tier-stack {
+      margin-bottom: 1rem;
+      margin-top: 0.25rem;
+    }
+
+    .tier-row {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px dotted var(--rule);
+    }
+
+    .tier-row:last-child { border-bottom: 0; }
+
+    .tier-pct {
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.025em;
+      min-width: 3.25rem;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .tier-range {
+      font-size: 0.86rem;
+      color: var(--soft);
+      letter-spacing: 0.01em;
+    }
+
     .hero-meta {
       font-size: 0.86rem;
       color: var(--soft);
@@ -448,9 +479,12 @@
         </div>
         <div class="hero-card">
           <div class="card-tag">Cut B</div>
-          <div class="card-number" id="heroCutB">5%</div>
-          <div class="card-desc">of monthly revenue above $5,000 MRR</div>
-          <div class="card-ramp">Grows to <span class="ramp-pct" id="heroCutBRamp">10%</span> if MRR sustains $25K+ for 60 days.</div>
+          <div class="tier-stack">
+            <div class="tier-row"><span class="tier-pct">5%</span><span class="tier-range">MRR from $1K to $5K</span></div>
+            <div class="tier-row"><span class="tier-pct">10%</span><span class="tier-range">MRR from $5K to $25K</span></div>
+            <div class="tier-row"><span class="tier-pct">15%</span><span class="tier-range">MRR above $25K</span></div>
+          </div>
+          <div class="card-desc">Monthly revenue share, tiered. Nothing below $1K MRR.</div>
         </div>
       </div>
       <div class="hero-meta">
@@ -466,20 +500,6 @@
           <div class="input-row">
             <input type="range" id="cutA" min="1" max="30" step="0.5" value="8">
             <div class="calc-value" id="cutAVal">8%</div>
-          </div>
-        </div>
-        <div class="calc-input">
-          <label>Cut B · floor % above $5K MRR</label>
-          <div class="input-row">
-            <input type="range" id="cutB" min="1" max="20" step="0.5" value="5">
-            <div class="calc-value" id="cutBVal">5%</div>
-          </div>
-        </div>
-        <div class="calc-input">
-          <label>Cut B · ramp % above $25K MRR (milestone)</label>
-          <div class="input-row">
-            <input type="range" id="cutBRamp" min="1" max="30" step="0.5" value="10">
-            <div class="calc-value" id="cutBRampVal">10%</div>
           </div>
         </div>
       </div>
@@ -516,7 +536,7 @@
       </div>
 
       <div class="threshold-callout" id="thresholdCallout">
-        <strong>Below the $5,000 MRR threshold.</strong> Cut B pays nothing yet. Cash starts flowing the month Dear crosses $5K MRR.
+        <strong>Below the $1,000 MRR floor.</strong> Cut B pays nothing yet. Cash starts flowing the month Dear crosses $1K MRR.
       </div>
 
       <div class="row"><span class="label">Subscribers</span><span class="value" id="subsOut">2,000</span></div>
@@ -547,8 +567,13 @@
     <hr class="rule">
 
     <h2>Cut B · monthly revenue share</h2>
-    <p>Your floor % of Dear's monthly net revenue above the $5,000 MRR threshold, paid monthly. Net = revenue after Apple's platform cut and infrastructure costs. Below $5K MRR, zero. Cash starts flowing the month Dear crosses $5K MRR.</p>
-    <p>Grows to the higher ramp rate if MRR sustains $25,000+ for 60 consecutive days.</p>
+    <p>A tiered share of Dear's monthly net revenue, paid monthly. Net = revenue after Apple's platform cut. Below $1,000 MRR, zero. Above $1K MRR, the rate climbs in brackets:</p>
+    <ul class="bare">
+      <li><strong>5%</strong> on MRR from $1,000 to $5,000</li>
+      <li><strong>10%</strong> on MRR from $5,000 to $25,000</li>
+      <li><strong>15%</strong> on MRR above $25,000</li>
+    </ul>
+    <p>The brackets compound, the way tax brackets do. At $10K MRR you earn 5% on the first $4K above the floor plus 10% on the next $5K, not a flat rate on the whole thing.</p>
 
     <hr class="rule">
 
@@ -646,11 +671,14 @@
       return Math.round(n).toLocaleString();
     }
 
-    var FLOOR_MRR = 5000;
-    var RAMP_MRR = 25000;
+    var FLOOR_MRR = 1000;
+    var TIER1_TOP = 5000;
+    var TIER2_TOP = 25000;
+    var TIER1_RATE = 0.05;
+    var TIER2_RATE = 0.10;
+    var TIER3_RATE = 0.15;
     var ARPU = 2.50;
     var APPLE_NET = 0.85;
-    var FRENCH_NET = 0.38;
 
     // Check edit mode
     var urlParams = new URLSearchParams(window.location.search);
@@ -661,24 +689,48 @@
 
     // Default locked equity values
     var lockedCutA = 8;
-    var lockedCutB = 5;
-    var lockedCutBRamp = 10;
 
     function getEquity() {
       if (editMode) {
         return {
-          cutA: parseFloat(document.getElementById('cutA').value),
-          cutB: parseFloat(document.getElementById('cutB').value),
-          cutBRamp: parseFloat(document.getElementById('cutBRamp').value)
+          cutA: parseFloat(document.getElementById('cutA').value)
         };
       }
-      return { cutA: lockedCutA, cutB: lockedCutB, cutBRamp: lockedCutBRamp };
+      return { cutA: lockedCutA };
     }
 
     function updateHero(eq) {
       document.getElementById('heroCutA').textContent = eq.cutA + '%';
-      document.getElementById('heroCutB').textContent = eq.cutB + '%';
-      document.getElementById('heroCutBRamp').textContent = eq.cutBRamp + '%';
+    }
+
+    function calculateCutB(netMRR) {
+      if (netMRR <= FLOOR_MRR) {
+        return { total: 0, rateText: '0% (below $1K floor)' };
+      }
+
+      var t1Income = Math.max(0, Math.min(netMRR, TIER1_TOP) - FLOOR_MRR);
+      var t1Cut = t1Income * TIER1_RATE;
+
+      var t2Income = 0;
+      if (netMRR > TIER1_TOP) {
+        t2Income = Math.min(netMRR, TIER2_TOP) - TIER1_TOP;
+      }
+      var t2Cut = t2Income * TIER2_RATE;
+
+      var t3Income = 0;
+      if (netMRR > TIER2_TOP) {
+        t3Income = netMRR - TIER2_TOP;
+      }
+      var t3Cut = t3Income * TIER3_RATE;
+
+      var total = t1Cut + t2Cut + t3Cut;
+
+      var rateText;
+      if (netMRR <= TIER1_TOP) rateText = '5% tier ($1K-$5K range)';
+      else if (netMRR <= TIER2_TOP) rateText = '5% / 10% (in $5K-$25K range)';
+      else rateText = '5% / 10% / 15% (in $25K+ range)';
+
+      return { total: total, rateText: rateText };
     }
 
     function recalc() {
@@ -693,8 +745,6 @@
 
       if (editMode) {
         document.getElementById('cutAVal').textContent = eq.cutA + '%';
-        document.getElementById('cutBVal').textContent = eq.cutB + '%';
-        document.getElementById('cutBRampVal').textContent = eq.cutBRamp + '%';
       }
 
       updateHero(eq);
@@ -704,19 +754,11 @@
       var netMRR = grossMRR * APPLE_NET;
       var arr = netMRR * 12;
       var sale = arr * multiple;
-
-      var cutBGross = 0;
-      var rateText = '0% (below $5K threshold)';
-      var atMilestone = netMRR > RAMP_MRR;
       var aboveFloor = netMRR > FLOOR_MRR;
 
-      if (atMilestone) {
-        cutBGross = (netMRR - FLOOR_MRR) * (eq.cutBRamp / 100);
-        rateText = eq.cutBRamp + '% (milestone hit at $25K+)';
-      } else if (aboveFloor) {
-        cutBGross = (netMRR - FLOOR_MRR) * (eq.cutB / 100);
-        rateText = eq.cutB + '% (between $5K and $25K MRR)';
-      }
+      var cutBResult = calculateCutB(netMRR);
+      var cutBGross = cutBResult.total;
+      var rateText = cutBResult.rateText;
 
       var cutAGross = sale * (eq.cutA / 100);
 
@@ -738,7 +780,7 @@
 
     var inputs = ['users', 'subRate', 'multiple'];
     if (editMode) {
-      inputs = inputs.concat(['cutA', 'cutB', 'cutBRamp']);
+      inputs = inputs.concat(['cutA']);
     }
     inputs.forEach(function(id) {
       var el = document.getElementById(id);
