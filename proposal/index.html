@@ -11,13 +11,16 @@
   <style>
     :root {
       --bg: #FAF8F5;
-      --ink: #2C2C2C;
+      --ink: #1F1F1F;
       --soft: #6B6B6B;
       --rule: #D9D5CD;
+      --rule-soft: #ECE7DD;
       --accent: #6B8AD6;
       --accent-soft: #EAF0FA;
       --warn-bg: #FBF3E6;
       --warn-ink: #8B6E2E;
+      --edit-bg: #F0EBE0;
+      --edit-ink: #6B5B2E;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -31,32 +34,32 @@
       font-size: 16px;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      padding: 4rem 1.5rem 7rem;
+      padding: 3.5rem 1.5rem 7rem;
     }
 
     .page {
-      max-width: 700px;
+      max-width: 720px;
       margin: 0 auto;
     }
 
     .meta {
       font-size: 11px;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--soft);
       margin-bottom: 1.5rem;
     }
 
     h1 {
-      font-size: 2.25rem;
-      font-weight: 600;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
       margin-bottom: 3rem;
     }
 
     h2 {
-      font-size: 1.35rem;
+      font-size: 1.3rem;
       font-weight: 600;
       letter-spacing: -0.01em;
       margin-top: 0;
@@ -64,11 +67,11 @@
     }
 
     h3 {
-      font-size: 0.78rem;
-      letter-spacing: 0.12em;
+      font-size: 0.74rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--soft);
-      font-weight: 500;
+      font-weight: 600;
       margin-top: 1.75rem;
       margin-bottom: 0.75rem;
     }
@@ -84,62 +87,136 @@
       margin: 4rem 0;
     }
 
+    /* HERO OFFER */
+    .hero {
+      margin-bottom: 4rem;
+    }
+
+    .hero-label {
+      font-size: 0.74rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--soft);
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .hero-card {
+      background: white;
+      border: 1px solid var(--rule);
+      padding: 2rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .card-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 0.65rem;
+    }
+
+    .card-number {
+      font-size: 3.75rem;
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 1;
+      color: var(--ink);
+      margin-bottom: 0.85rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .card-desc {
+      font-size: 0.96rem;
+      color: var(--ink);
+      line-height: 1.5;
+      margin-bottom: auto;
+    }
+
+    .card-ramp {
+      font-size: 0.85rem;
+      color: var(--soft);
+      margin-top: 1rem;
+      padding-top: 0.9rem;
+      border-top: 1px dotted var(--rule);
+      line-height: 1.5;
+    }
+
+    .card-ramp .ramp-pct {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .hero-meta {
+      font-size: 0.86rem;
+      color: var(--soft);
+      margin-top: 1.5rem;
+      text-align: center;
+      letter-spacing: 0.01em;
+    }
+
+    .hero-meta .dot { opacity: 0.5; }
+
+    /* EDIT PANEL */
+    .edit-panel {
+      display: none;
+      background: var(--edit-bg);
+      border: 1px solid #D9C896;
+      padding: 1.5rem 1.75rem;
+      margin: 0 0 3rem;
+      border-radius: 2px;
+    }
+
+    body.editing .edit-panel { display: block; }
+
+    .edit-banner {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--edit-ink);
+      font-weight: 600;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid #E0D2A4;
+    }
+
     /* CALCULATOR */
     .calc {
       background: white;
       border: 1px solid var(--rule);
       padding: 1.75rem;
-      margin: 1.5rem 0 0;
+      margin-top: 1.25rem;
     }
 
-    .calc-section-label {
-      font-size: 0.72rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--soft);
-      font-weight: 500;
-      margin-bottom: 0.85rem;
-      padding-bottom: 0.65rem;
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .calc-defs {
+    .calc-intro {
       font-size: 0.92rem;
-      color: var(--ink);
+      color: var(--soft);
       margin-bottom: 1.5rem;
-    }
-
-    .calc-defs .def {
-      padding: 0.35rem 0;
-    }
-
-    .calc-defs .def strong {
-      font-weight: 600;
-      color: var(--accent);
+      max-width: none;
     }
 
     .calc-inputs {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 1.25rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .calc-section {
-      padding-top: 1.25rem;
-    }
-
-    .calc-section:not(:first-child) {
-      border-top: 1px dashed var(--rule);
-      margin-top: 0.5rem;
+      gap: 1.1rem;
+      margin-bottom: 1.25rem;
     }
 
     .calc-input label {
       display: block;
       font-size: 0.82rem;
       color: var(--soft);
-      letter-spacing: 0.04em;
-      margin-bottom: 0.5rem;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.45rem;
     }
 
     .calc-input .input-row {
@@ -195,10 +272,6 @@
       box-shadow: 0 0 0 1px var(--accent);
     }
 
-    .calc-output {
-      padding-top: 0.5rem;
-    }
-
     .threshold-callout {
       background: var(--warn-bg);
       color: var(--warn-ink);
@@ -207,9 +280,13 @@
       font-size: 0.88rem;
       margin: 1rem 0;
       display: none;
+      line-height: 1.5;
     }
     .threshold-callout.visible {
       display: block;
+    }
+    .threshold-callout strong {
+      font-weight: 600;
     }
 
     .calc-assumptions {
@@ -233,10 +310,13 @@
 
     .row:last-child {
       border-bottom: 0;
+    }
+
+    .row.divider {
       margin-top: 0.5rem;
       padding-top: 1rem;
       border-top: 1px solid var(--rule);
-      font-weight: 500;
+      border-bottom: 1px dotted var(--rule);
     }
 
     .row .label { color: var(--soft); flex: 1; }
@@ -246,7 +326,7 @@
       white-space: nowrap;
     }
     .row.highlight .label { color: var(--ink); font-weight: 500; }
-    .row.highlight .value { color: var(--accent); font-weight: 600; }
+    .row.highlight .value { color: var(--accent); font-weight: 600; font-size: 1rem; }
 
     /* TIMELINE */
     .timeline {
@@ -291,7 +371,7 @@
     }
 
     ul.bare li {
-      padding: 0.7rem 0;
+      padding: 0.75rem 0;
       border-bottom: 1px dotted var(--rule);
       max-width: 62ch;
       font-size: 0.95rem;
@@ -318,8 +398,6 @@
       line-height: 1.65;
     }
 
-    .accent { color: var(--accent); }
-
     .step {
       padding: 1.3rem 0;
       border-bottom: 1px solid var(--rule);
@@ -342,8 +420,11 @@
     }
 
     @media (max-width: 540px) {
-      body { padding: 3rem 1.25rem 5rem; }
-      h1 { font-size: 1.85rem; }
+      body { padding: 2.5rem 1.25rem 5rem; }
+      h1 { font-size: 1.9rem; margin-bottom: 2.25rem; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-card { padding: 1.5rem 1.25rem; }
+      .card-number { font-size: 3rem; }
       .calc { padding: 1.25rem; }
       .calc-input .calc-value { min-width: 95px; font-size: 0.9rem; }
       .timeline { grid-template-columns: repeat(2, 1fr); }
@@ -357,95 +438,103 @@
     <div class="meta">Private proposal · Draft · 2026-05</div>
     <h1>Joining Dear</h1>
 
-    <h2>Quick estimate</h2>
-    <p class="small">Phantom equity at Dear has two cuts. Drag the sliders to see what they look like at different scales.</p>
-
-    <div class="calc">
-      <div class="calc-defs">
-        <div class="def"><strong>Cut A</strong> · % of net proceeds if/when Dear is sold.</div>
-        <div class="def"><strong>Cut B</strong> · % of monthly net revenue above the $5,000 MRR threshold. Grows to a higher rate if MRR sustains $25,000+ for 60 days.</div>
+    <section class="hero">
+      <div class="hero-label">The offer</div>
+      <div class="hero-grid">
+        <div class="hero-card">
+          <div class="card-tag">Cut A</div>
+          <div class="card-number" id="heroCutA">10%</div>
+          <div class="card-desc">of net proceeds, if/when Dear is sold</div>
+        </div>
+        <div class="hero-card">
+          <div class="card-tag">Cut B</div>
+          <div class="card-number" id="heroCutB">5%</div>
+          <div class="card-desc">of monthly revenue above $5,000 MRR</div>
+          <div class="card-ramp">Grows to <span class="ramp-pct" id="heroCutBRamp">10%</span> if MRR sustains $25K+ for 60 days.</div>
+        </div>
       </div>
+      <div class="hero-meta">
+        4-year vesting <span class="dot">·</span> 12-month cliff <span class="dot">·</span> Paid in cash when triggers fire
+      </div>
+    </section>
 
-      <div class="calc-section">
-        <div class="calc-section-label">Business scenario</div>
-        <div class="calc-inputs">
-          <div class="calc-input">
-            <label>Active users</label>
-            <div class="input-row">
-              <input type="range" id="users" min="0" max="100000" step="500" value="25000">
-              <div class="calc-value" id="usersVal">25,000</div>
-            </div>
+    <section class="edit-panel" id="editPanel">
+      <div class="edit-banner">Edit mode · adjust to lock new offer numbers</div>
+      <div class="calc-inputs">
+        <div class="calc-input">
+          <label>Cut A · % of sale</label>
+          <div class="input-row">
+            <input type="range" id="cutA" min="1" max="30" step="0.5" value="10">
+            <div class="calc-value" id="cutAVal">10%</div>
           </div>
-
-          <div class="calc-input">
-            <label>% who subscribe</label>
-            <div class="input-row">
-              <input type="range" id="subRate" min="0.5" max="15" step="0.1" value="3">
-              <div class="calc-value" id="subRateVal">3.0%</div>
-            </div>
+        </div>
+        <div class="calc-input">
+          <label>Cut B · floor % above $5K MRR</label>
+          <div class="input-row">
+            <input type="range" id="cutB" min="1" max="20" step="0.5" value="5">
+            <div class="calc-value" id="cutBVal">5%</div>
           </div>
-
-          <div class="calc-input">
-            <label>Hypothetical sale price</label>
-            <div class="input-row">
-              <input type="range" id="sale" min="0" max="50000000" step="500000" value="5000000">
-              <div class="calc-value" id="saleVal">$5,000,000</div>
-            </div>
+        </div>
+        <div class="calc-input">
+          <label>Cut B · ramp % above $25K MRR (milestone)</label>
+          <div class="input-row">
+            <input type="range" id="cutBRamp" min="1" max="30" step="0.5" value="10">
+            <div class="calc-value" id="cutBRampVal">10%</div>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="calc-section">
-        <div class="calc-section-label">Your equity tier</div>
-        <div class="calc-inputs">
-          <div class="calc-input">
-            <label>Cut A · % of sale</label>
-            <div class="input-row">
-              <input type="range" id="cutA" min="1" max="25" step="0.5" value="10">
-              <div class="calc-value" id="cutAVal">10%</div>
-            </div>
+    <h2>Project the numbers</h2>
+    <p class="small">The offer above is fixed. Drag the sliders to see what it would pay at different scales.</p>
+
+    <div class="calc">
+      <div class="calc-inputs">
+        <div class="calc-input">
+          <label>Active users</label>
+          <div class="input-row">
+            <input type="range" id="users" min="0" max="300000" step="1000" value="50000">
+            <div class="calc-value" id="usersVal">50,000</div>
           </div>
+        </div>
 
-          <div class="calc-input">
-            <label>Cut B · % above $5K MRR (floor rate)</label>
-            <div class="input-row">
-              <input type="range" id="cutB" min="1" max="20" step="0.5" value="5">
-              <div class="calc-value" id="cutBVal">5%</div>
-            </div>
+        <div class="calc-input">
+          <label>% who subscribe</label>
+          <div class="input-row">
+            <input type="range" id="subRate" min="0.5" max="15" step="0.1" value="4">
+            <div class="calc-value" id="subRateVal">4.0%</div>
           </div>
+        </div>
 
-          <div class="calc-input">
-            <label>Cut B · % above $25K MRR (after milestone)</label>
-            <div class="input-row">
-              <input type="range" id="cutBRamp" min="1" max="30" step="0.5" value="10">
-              <div class="calc-value" id="cutBRampVal">10%</div>
-            </div>
+        <div class="calc-input">
+          <label>Hypothetical sale price</label>
+          <div class="input-row">
+            <input type="range" id="sale" min="0" max="50000000" step="500000" value="10000000">
+            <div class="calc-value" id="saleVal">$10,000,000</div>
           </div>
         </div>
       </div>
 
       <div class="threshold-callout" id="thresholdCallout">
-        Below the $5,000 MRR threshold. Cut B pays nothing yet. Cash starts flowing the month Dear crosses $5K MRR.
+        <strong>Below the $5,000 MRR threshold.</strong> Cut B pays nothing yet. Cash starts flowing the month Dear crosses $5K MRR.
       </div>
 
-      <div class="calc-output">
-        <div class="row"><span class="label">Subscribers</span><span class="value" id="subsOut">750</span></div>
-        <div class="row"><span class="label">Monthly net revenue</span><span class="value" id="mrrOut">$1,594</span></div>
-        <div class="row"><span class="label">Cut B rate (auto)</span><span class="value" id="rateOut">0% (below threshold)</span></div>
-        <div class="row"><span class="label">Cut B gross to portage</span><span class="value" id="cutBGrossOut">$0</span></div>
-        <div class="row highlight"><span class="label">Cut B net to your bank, monthly</span><span class="value" id="cutBNetOut">~$0</span></div>
-        <div class="row"><span class="label">Cut A gross to portage at this sale price</span><span class="value" id="cutAGrossOut">$500,000</span></div>
-        <div class="row highlight"><span class="label">Cut A net to your bank, today's structure</span><span class="value" id="cutANetOut">~$190,000</span></div>
-      </div>
+      <div class="row"><span class="label">Subscribers</span><span class="value" id="subsOut">2,000</span></div>
+      <div class="row"><span class="label">Monthly net revenue</span><span class="value" id="mrrOut">$4,250</span></div>
+      <div class="row"><span class="label">Cut B rate (auto)</span><span class="value" id="rateOut">0% (below $5K threshold)</span></div>
+      <div class="row divider"><span class="label">Cut B gross to your portage account</span><span class="value" id="cutBGrossOut">$0</span></div>
+      <div class="row highlight"><span class="label">Cut B net to your bank, monthly</span><span class="value" id="cutBNetOut">$0</span></div>
+      <div class="row divider"><span class="label">Cut A gross at this sale price</span><span class="value" id="cutAGrossOut">$1,000,000</span></div>
+      <div class="row highlight"><span class="label">Cut A net to your bank, today's structure</span><span class="value" id="cutANetOut">~$380,000</span></div>
 
       <div class="calc-assumptions">
-        Assumptions: blended ARPU $2.50/month per subscriber (mix of $2.99/mo and $14.99/yr plans), Apple's 15% small-business platform cut applied, French tax leakage ~62% on payouts via portage salarial. Converting to BSPCE through a French SAS subsidiary in Q4 2026 or Q1 2027 would roughly cut the tax leakage in half, doubling the net figures shown above.
+        Assumptions: blended ARPU $2.50/month per subscriber (mix of $2.99/mo and $14.99/yr plans), Apple's 15% small-business platform cut, French tax leakage ~62% on payouts via portage salarial. Converting to BSPCE through a French SAS subsidiary in Q4 2026 or Q1 2027 would cut the tax leakage roughly in half, doubling the net figures shown.
       </div>
     </div>
 
     <hr class="rule">
 
-    <h2>Overview</h2>
+    <h2>What this actually is</h2>
     <p>Dear is bootstrapped. No investors, no planned exit. The way you share in what we build is phantom equity: a written contract giving you a cut of Dear's earnings or sale proceeds, paid in cash when triggers fire, vesting over time.</p>
     <p>Not real ownership of Elsewhere Index LLC. No shares, no votes, no K-1, no tax obligations until money flows. A written promise that scales with the company. If Dear works, this is real. If Dear doesn't, this costs you nothing.</p>
 
@@ -453,19 +542,19 @@
 
     <h2>Cut A · if/when Dear is sold</h2>
     <p>Your % of net proceeds if/when Dear is sold. Sale here means a sale of Dear specifically (the app, the brand, the IP, the user base, the App Store and Play Store listings, anything Dear-related), not a sale of Elsewhere Index LLC. Net = sale price minus broker fees, legal costs, and any Dear-related debt outstanding. If Dear is never sold, this is zero.</p>
-    <p class="small">In Q4 2026 or Q1 2027, if Dear has real revenue, we revisit converting this to BSPCE through a French SAS subsidiary. Same percentage, roughly 30% all-in tax instead of ~62%. Roughly doubles the net to you on the same sale event.</p>
+    <p class="small">In Q4 2026 or Q1 2027, if Dear has real revenue, we revisit converting this to BSPCE through a French SAS subsidiary. Same percentage, roughly 30% all-in French tax instead of ~62%. Roughly doubles your net on the same sale event.</p>
 
     <hr class="rule">
 
     <h2>Cut B · monthly revenue share</h2>
-    <p>Your floor % of Dear's monthly net revenue above $5,000 MRR, paid monthly. Net = revenue after Apple's platform cut and infrastructure costs. Below $5K MRR, zero. You earn nothing from Cut B until Dear is generating real revenue.</p>
-    <p>Grows to the higher rate if MRR sustains $25,000+ for 60 consecutive days. That's the milestone ramp.</p>
+    <p>Your floor % of Dear's monthly net revenue above the $5,000 MRR threshold, paid monthly. Net = revenue after Apple's platform cut and infrastructure costs. Below $5K MRR, zero. Cash starts flowing the month Dear crosses $5K MRR.</p>
+    <p>Grows to the higher ramp rate if MRR sustains $25,000+ for 60 consecutive days.</p>
 
     <hr class="rule">
 
     <h2>Vesting</h2>
     <p>Both cuts vest on the same schedule: 4 years, 12-month cliff.</p>
-    <p>The first 12 months are the cliff. Nothing vests during the cliff. Leave before month 12 and you forfeit everything. At month 12, 25% vests immediately. From there, 1/48th vests each month through month 48.</p>
+    <p>The first 12 months are the cliff. Nothing vests during the cliff. Stay through month 12 and 25% vests immediately, yours from that point forward. From there, another 1/48th vests each month through month 48. Your vested portion stays yours even if Dear shuts down.</p>
 
     <div class="timeline">
       <div class="quarter">
@@ -493,8 +582,8 @@
     <hr class="rule">
 
     <h2>Active engagement</h2>
-    <p>Vesting requires active engagement, defined loosely: at least one substantive deliverable per month, or ownership of one shared artifact (a dashboard, a content calendar, a weekly memo, or similar). No hour tracking.</p>
-    <p>If you go silent for a full quarter, vesting pauses for that quarter and resumes when you re-engage. If Dear shuts down or stops operating, your vested portion stays vested.</p>
+    <p>Vesting requires active engagement, defined loosely: one substantive deliverable per month, or ownership of one shared artifact (a dashboard, a content calendar, a weekly memo, or similar). No hour tracking.</p>
+    <p>If you go silent for a full quarter, vesting pauses for that quarter and resumes when you re-engage. If Dear shuts down or stops operating, your vested portion stays yours.</p>
 
     <hr class="rule">
 
@@ -542,7 +631,7 @@
     </div>
 
     <div class="footer">
-      <p>Draft proposal, not a contract. Numbers and structure are illustrative and subject to mutual agreement and counsel review. The calculator above is for scenario exploration; the actual percentages and thresholds get locked when this letter is papered.</p>
+      <p>Draft proposal, not a contract. Final terms subject to mutual agreement and counsel review. The calculator above is for scenario projection; the offer percentages and thresholds are fixed.</p>
     </div>
   </div>
 
@@ -563,40 +652,72 @@
     var APPLE_NET = 0.85;
     var FRENCH_NET = 0.38;
 
+    // Check edit mode
+    var urlParams = new URLSearchParams(window.location.search);
+    var editMode = urlParams.has('edit');
+    if (editMode) {
+      document.body.classList.add('editing');
+    }
+
+    // Default locked equity values
+    var lockedCutA = 10;
+    var lockedCutB = 5;
+    var lockedCutBRamp = 10;
+
+    function getEquity() {
+      if (editMode) {
+        return {
+          cutA: parseFloat(document.getElementById('cutA').value),
+          cutB: parseFloat(document.getElementById('cutB').value),
+          cutBRamp: parseFloat(document.getElementById('cutBRamp').value)
+        };
+      }
+      return { cutA: lockedCutA, cutB: lockedCutB, cutBRamp: lockedCutBRamp };
+    }
+
+    function updateHero(eq) {
+      document.getElementById('heroCutA').textContent = eq.cutA + '%';
+      document.getElementById('heroCutB').textContent = eq.cutB + '%';
+      document.getElementById('heroCutBRamp').textContent = eq.cutBRamp + '%';
+    }
+
     function recalc() {
       var users = parseInt(document.getElementById('users').value, 10);
       var subRate = parseFloat(document.getElementById('subRate').value) / 100;
       var sale = parseInt(document.getElementById('sale').value, 10);
-      var cutAPct = parseFloat(document.getElementById('cutA').value);
-      var cutBPct = parseFloat(document.getElementById('cutB').value);
-      var cutBRampPct = parseFloat(document.getElementById('cutBRamp').value);
+      var eq = getEquity();
 
       document.getElementById('usersVal').textContent = fmtNum(users);
-      document.getElementById('subRateVal').textContent = subRate * 100 < 10 ? (subRate * 100).toFixed(1) + '%' : (subRate * 100).toFixed(0) + '%';
+      document.getElementById('subRateVal').textContent = (subRate * 100).toFixed(1) + '%';
       document.getElementById('saleVal').textContent = fmt(sale);
-      document.getElementById('cutAVal').textContent = cutAPct + '%';
-      document.getElementById('cutBVal').textContent = cutBPct + '%';
-      document.getElementById('cutBRampVal').textContent = cutBRampPct + '%';
+
+      if (editMode) {
+        document.getElementById('cutAVal').textContent = eq.cutA + '%';
+        document.getElementById('cutBVal').textContent = eq.cutB + '%';
+        document.getElementById('cutBRampVal').textContent = eq.cutBRamp + '%';
+      }
+
+      updateHero(eq);
 
       var subscribers = users * subRate;
       var grossMRR = subscribers * ARPU;
       var netMRR = grossMRR * APPLE_NET;
 
       var cutBGross = 0;
-      var rateText = '0% (below $' + (FLOOR_MRR / 1000) + 'K threshold)';
+      var rateText = '0% (below $5K threshold)';
       var atMilestone = netMRR > RAMP_MRR;
       var aboveFloor = netMRR > FLOOR_MRR;
 
       if (atMilestone) {
-        cutBGross = (netMRR - FLOOR_MRR) * (cutBRampPct / 100);
-        rateText = cutBRampPct + '% (above $25K MRR, milestone)';
+        cutBGross = (netMRR - FLOOR_MRR) * (eq.cutBRamp / 100);
+        rateText = eq.cutBRamp + '% (milestone hit at $25K+)';
       } else if (aboveFloor) {
-        cutBGross = (netMRR - FLOOR_MRR) * (cutBPct / 100);
-        rateText = cutBPct + '% (between $5K and $25K MRR)';
+        cutBGross = (netMRR - FLOOR_MRR) * (eq.cutB / 100);
+        rateText = eq.cutB + '% (between $5K and $25K MRR)';
       }
 
       var cutBNet = cutBGross * FRENCH_NET;
-      var cutAGross = sale * (cutAPct / 100);
+      var cutAGross = sale * (eq.cutA / 100);
       var cutANet = cutAGross * FRENCH_NET;
 
       var callout = document.getElementById('thresholdCallout');
@@ -610,13 +731,18 @@
       document.getElementById('mrrOut').textContent = fmt(netMRR);
       document.getElementById('rateOut').textContent = rateText;
       document.getElementById('cutBGrossOut').textContent = fmt(cutBGross) + (cutBGross > 0 ? '/mo' : '');
-      document.getElementById('cutBNetOut').textContent = '~' + fmt(cutBNet) + (cutBNet > 0 ? '/mo' : '');
+      document.getElementById('cutBNetOut').textContent = (cutBNet > 0 ? '~' : '') + fmt(cutBNet) + (cutBNet > 0 ? '/mo' : '');
       document.getElementById('cutAGrossOut').textContent = fmt(cutAGross);
       document.getElementById('cutANetOut').textContent = '~' + fmt(cutANet);
     }
 
-    ['users', 'subRate', 'sale', 'cutA', 'cutB', 'cutBRamp'].forEach(function(id) {
-      document.getElementById(id).addEventListener('input', recalc);
+    var inputs = ['users', 'subRate', 'sale'];
+    if (editMode) {
+      inputs = inputs.concat(['cutA', 'cutB', 'cutBRamp']);
+    }
+    inputs.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.addEventListener('input', recalc);
     });
 
     recalc();
