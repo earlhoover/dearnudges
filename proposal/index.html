@@ -501,16 +501,16 @@
         <div class="calc-input">
           <label>% who subscribe</label>
           <div class="input-row">
-            <input type="range" id="subRate" min="0.5" max="15" step="0.1" value="4">
+            <input type="range" id="subRate" min="0.5" max="50" step="0.5" value="4">
             <div class="calc-value" id="subRateVal">4.0%</div>
           </div>
         </div>
 
         <div class="calc-input">
-          <label>Hypothetical sale price</label>
+          <label>Exit multiple (sale price = ARR &times; this)</label>
           <div class="input-row">
-            <input type="range" id="sale" min="0" max="50000000" step="500000" value="10000000">
-            <div class="calc-value" id="saleVal">$10,000,000</div>
+            <input type="range" id="multiple" min="3" max="20" step="0.5" value="5">
+            <div class="calc-value" id="multipleVal">5.0x ARR</div>
           </div>
         </div>
       </div>
@@ -520,15 +520,17 @@
       </div>
 
       <div class="row"><span class="label">Subscribers</span><span class="value" id="subsOut">2,000</span></div>
-      <div class="row"><span class="label">Monthly net revenue</span><span class="value" id="mrrOut">$4,250</span></div>
+      <div class="row"><span class="label">Monthly net revenue (MRR)</span><span class="value" id="mrrOut">$4,250</span></div>
+      <div class="row"><span class="label">Annual recurring revenue (ARR)</span><span class="value" id="arrOut">$51,000</span></div>
+      <div class="row"><span class="label">Implied sale price (ARR × multiple)</span><span class="value" id="impliedSaleOut">$255,000</span></div>
       <div class="row"><span class="label">Cut B rate (auto)</span><span class="value" id="rateOut">0% (below $5K threshold)</span></div>
       <div class="row divider"><span class="label">Cut B gross to your portage account</span><span class="value" id="cutBGrossOut">$0</span></div>
       <div class="row highlight"><span class="label">Cut B net to your bank, monthly</span><span class="value" id="cutBNetOut">$0</span></div>
-      <div class="row divider"><span class="label">Cut A gross at this sale price</span><span class="value" id="cutAGrossOut">$1,000,000</span></div>
-      <div class="row highlight"><span class="label">Cut A net to your bank, today's structure</span><span class="value" id="cutANetOut">~$380,000</span></div>
+      <div class="row divider"><span class="label">Cut A gross at implied sale</span><span class="value" id="cutAGrossOut">$20,400</span></div>
+      <div class="row highlight"><span class="label">Cut A net to your bank, today's structure</span><span class="value" id="cutANetOut">~$7,752</span></div>
 
       <div class="calc-assumptions">
-        Assumptions: blended ARPU $2.50/month per subscriber (mix of $2.99/mo and $14.99/yr plans), Apple's 15% small-business platform cut, French tax leakage ~62% on payouts via portage salarial. Converting to BSPCE through a French SAS subsidiary in Q4 2026 or Q1 2027 would cut the tax leakage roughly in half, doubling the net figures shown.
+        Assumptions: blended ARPU $2.50/month per subscriber (mix of $2.99/mo and $14.99/yr plans), Apple's 15% small-business platform cut, French tax leakage ~62% on payouts via portage salarial. Sale price is computed as ARR &times; the multiple slider; 4-6x is the median range for small consumer subscription apps in 2025-2026, with strategic acquisitions reaching 15-20x+. Converting to BSPCE through a French SAS subsidiary in Q4 2026 or Q1 2027 would cut the tax leakage roughly in half, doubling the net figures shown.
       </div>
     </div>
 
@@ -684,12 +686,12 @@
     function recalc() {
       var users = parseInt(document.getElementById('users').value, 10);
       var subRate = parseFloat(document.getElementById('subRate').value) / 100;
-      var sale = parseInt(document.getElementById('sale').value, 10);
+      var multiple = parseFloat(document.getElementById('multiple').value);
       var eq = getEquity();
 
       document.getElementById('usersVal').textContent = fmtNum(users);
       document.getElementById('subRateVal').textContent = (subRate * 100).toFixed(1) + '%';
-      document.getElementById('saleVal').textContent = fmt(sale);
+      document.getElementById('multipleVal').textContent = multiple.toFixed(1) + 'x ARR';
 
       if (editMode) {
         document.getElementById('cutAVal').textContent = eq.cutA + '%';
@@ -702,6 +704,8 @@
       var subscribers = users * subRate;
       var grossMRR = subscribers * ARPU;
       var netMRR = grossMRR * APPLE_NET;
+      var arr = netMRR * 12;
+      var sale = arr * multiple;
 
       var cutBGross = 0;
       var rateText = '0% (below $5K threshold)';
@@ -729,6 +733,8 @@
 
       document.getElementById('subsOut').textContent = fmtNum(subscribers);
       document.getElementById('mrrOut').textContent = fmt(netMRR);
+      document.getElementById('arrOut').textContent = fmt(arr);
+      document.getElementById('impliedSaleOut').textContent = fmt(sale);
       document.getElementById('rateOut').textContent = rateText;
       document.getElementById('cutBGrossOut').textContent = fmt(cutBGross) + (cutBGross > 0 ? '/mo' : '');
       document.getElementById('cutBNetOut').textContent = (cutBNet > 0 ? '~' : '') + fmt(cutBNet) + (cutBNet > 0 ? '/mo' : '');
@@ -736,7 +742,7 @@
       document.getElementById('cutANetOut').textContent = '~' + fmt(cutANet);
     }
 
-    var inputs = ['users', 'subRate', 'sale'];
+    var inputs = ['users', 'subRate', 'multiple'];
     if (editMode) {
       inputs = inputs.concat(['cutA', 'cutB', 'cutBRamp']);
     }
