@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joining Dear</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FAF8F5;
+      --ink: #2C2C2C;
+      --soft: #6B6B6B;
+      --rule: #D9D5CD;
+      --accent: #6B8AD6;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      padding: 5rem 1.5rem 8rem;
+    }
+
+    .page {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .meta {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--soft);
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 2.75rem;
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      margin-bottom: 0.75rem;
+    }
+
+    .lede {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.15rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--soft);
+      margin-bottom: 4rem;
+      letter-spacing: 0.005em;
+    }
+
+    h2 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      letter-spacing: -0.005em;
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+    }
+
+    h3 {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--soft);
+      font-weight: 500;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      margin-bottom: 1.25rem;
+      max-width: 60ch;
+    }
+
+    .rule {
+      border: 0;
+      border-top: 1px solid var(--rule);
+      margin: 4.5rem 0;
+    }
+
+    .figure {
+      background: white;
+      border: 1px solid var(--rule);
+      padding: 1.75rem 1.5rem;
+      margin: 1.5rem 0 2rem;
+    }
+
+    .figure-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      margin-bottom: 1.25rem;
+      color: var(--ink);
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.55rem 0;
+      font-size: 0.94rem;
+      border-bottom: 1px dotted var(--rule);
+    }
+
+    .row:last-child {
+      border-bottom: 0;
+      margin-top: 0.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--rule);
+      font-weight: 500;
+    }
+
+    .row .label { color: var(--soft); flex: 1; }
+    .row .value {
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum";
+      white-space: nowrap;
+    }
+    .row.highlight .label { color: var(--ink); }
+    .row.highlight .value { color: var(--accent); }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin: 2rem 0;
+      border: 1px solid var(--rule);
+      background: white;
+    }
+
+    .quarter {
+      padding: 1.25rem 0.75rem;
+      border-right: 1px solid var(--rule);
+      text-align: center;
+    }
+
+    .quarter:last-child { border-right: 0; }
+
+    .quarter .year {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1rem;
+      color: var(--ink);
+    }
+    .quarter .pct {
+      color: var(--accent);
+      font-weight: 500;
+      margin-top: 0.4rem;
+      font-size: 0.95rem;
+      font-variant-numeric: tabular-nums;
+    }
+    .quarter .note {
+      color: var(--soft);
+      font-size: 0.72rem;
+      margin-top: 0.3rem;
+      letter-spacing: 0.02em;
+    }
+
+    ul.bare {
+      list-style: none;
+      margin-bottom: 1.25rem;
+    }
+
+    ul.bare li {
+      padding: 0.7rem 0;
+      border-bottom: 1px dotted var(--rule);
+      max-width: 60ch;
+      font-size: 0.95rem;
+    }
+
+    ul.bare li:last-child {
+      border-bottom: 0;
+    }
+
+    .small {
+      font-size: 0.88rem;
+      color: var(--soft);
+      max-width: 56ch;
+      line-height: 1.6;
+    }
+
+    .footer {
+      margin-top: 6rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--rule);
+      font-size: 0.82rem;
+      color: var(--soft);
+      max-width: 60ch;
+      line-height: 1.65;
+    }
+
+    em {
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
+    }
+
+    .accent { color: var(--accent); }
+
+    .step {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .step:last-child { border-bottom: 0; }
+
+    .step .when {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+      color: var(--ink);
+    }
+
+    .step .what {
+      color: var(--ink);
+      font-size: 0.95rem;
+      max-width: 56ch;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 540px) {
+      body { padding: 3rem 1.25rem 5rem; }
+      h1 { font-size: 2.1rem; }
+      .figure { padding: 1.25rem 1rem; }
+      .timeline { grid-template-columns: repeat(2, 1fr); }
+      .quarter:nth-child(2) { border-right: 0; }
+      .quarter:nth-child(1), .quarter:nth-child(2) { border-bottom: 1px solid var(--rule); }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="meta">Private proposal · Draft · 2026-05</div>
+    <h1>Joining Dear</h1>
+    <p class="lede">A proposal for Giacomo, in writing.</p>
+
+    <h2>The shape of it</h2>
+    <p>Before any number, the philosophy. Dear is bootstrapped. There is no investor, no exit plan, no liquidity event scheduled. The way you share in what we build is through <em>phantom equity</em>: a written contractual right to a cut of what Dear earns or sells for, paid in cash when those triggers fire, vesting over time.</p>
+    <p>It is not real ownership of Elsewhere Index LLC. There are no shares, no votes, no K-1, no tax obligations on you before money has flowed. Just a written promise that scales with the company. If Dear works, this is real. If Dear doesn't, this costs you nothing.</p>
+    <p>Two cuts, layered.</p>
+
+    <hr class="rule">
+
+    <h2>Cut A &middot; when Dear is sold</h2>
+    <p>You receive <span class="accent">5%</span> of net proceeds from any sale of Dear or Elsewhere Index LLC. Net means sale price minus broker fees, legal costs, and any debt outstanding. If Dear is never sold, this is zero.</p>
+
+    <h3>Worked example, sale at $5,000,000</h3>
+    <div class="figure">
+      <div class="figure-title">Cut A payout, illustrative</div>
+      <div class="row"><span class="label">Net sale proceeds</span><span class="value">$5,000,000</span></div>
+      <div class="row"><span class="label">Your 5%, gross to portage account</span><span class="value">$250,000</span></div>
+      <div class="row"><span class="label">After French tax leakage (~62%)</span><span class="value">−$155,000</span></div>
+      <div class="row highlight"><span class="label">Net to your bank, today's structure</span><span class="value">~$95,000</span></div>
+    </div>
+    <p class="small">In <em>Q4 2026 / Q1 2027</em>, if Dear has real revenue, we revisit moving this structure to BSPCE through a French SAS subsidiary. Same 5%, roughly 30% all-in tax instead of ~62%. Same example would net you ~$175,000 instead of ~$95,000.</p>
+
+    <hr class="rule">
+
+    <h2>Cut B &middot; ongoing share of monthly revenue</h2>
+    <p>You receive <span class="accent">3%</span> of Dear's monthly net revenue above $10,000 MRR, paid monthly. Net means revenue after Apple's platform cut and infrastructure costs. Below $10K MRR, this is zero.</p>
+    <p>Cut B grows by an additional <span class="accent">3%</span> (to 6% total) if MRR sustains $25,000+ for 60 consecutive days. That's the milestone ramp.</p>
+
+    <h3>Worked example, $15,000 MRR</h3>
+    <div class="figure">
+      <div class="figure-title">Cut B monthly payout, illustrative</div>
+      <div class="row"><span class="label">Monthly net revenue</span><span class="value">$15,000</span></div>
+      <div class="row"><span class="label">Above $10K threshold</span><span class="value">$5,000</span></div>
+      <div class="row"><span class="label">Your 3%, gross to portage account</span><span class="value">$150</span></div>
+      <div class="row"><span class="label">After French tax leakage (~62%)</span><span class="value">−$93</span></div>
+      <div class="row highlight"><span class="label">Net to your bank, monthly</span><span class="value">~$57</span></div>
+    </div>
+
+    <h3>Worked example, $25,000 MRR (after milestone)</h3>
+    <div class="figure">
+      <div class="figure-title">Cut B monthly payout, illustrative</div>
+      <div class="row"><span class="label">Monthly net revenue</span><span class="value">$25,000</span></div>
+      <div class="row"><span class="label">Above $10K threshold</span><span class="value">$15,000</span></div>
+      <div class="row"><span class="label">Your 6%, gross to portage account</span><span class="value">$900</span></div>
+      <div class="row"><span class="label">After French tax leakage (~62%)</span><span class="value">−$558</span></div>
+      <div class="row highlight"><span class="label">Net to your bank, monthly</span><span class="value">~$342</span></div>
+    </div>
+
+    <hr class="rule">
+
+    <h2>Vesting</h2>
+    <p>Both Cut A and Cut B vest on the same schedule. <em>Four years, with a twelve-month cliff.</em></p>
+    <p>The cliff is the first 12 months. During the cliff, nothing vests. If you leave inside it, you forfeit everything. Once the cliff crosses, 25% of your full grant becomes yours, immediately. From there, another 1/48th vests each month until you are fully vested at month 48.</p>
+
+    <div class="timeline">
+      <div class="quarter">
+        <div class="year">Year 1</div>
+        <div class="pct">0% &rarr; 25%</div>
+        <div class="note">cliff at month 12</div>
+      </div>
+      <div class="quarter">
+        <div class="year">Year 2</div>
+        <div class="pct">50%</div>
+        <div class="note">monthly vesting</div>
+      </div>
+      <div class="quarter">
+        <div class="year">Year 3</div>
+        <div class="pct">75%</div>
+        <div class="note">monthly vesting</div>
+      </div>
+      <div class="quarter">
+        <div class="year">Year 4</div>
+        <div class="pct">100%</div>
+        <div class="note">fully vested</div>
+      </div>
+    </div>
+
+    <hr class="rule">
+
+    <h2>What active engagement means</h2>
+    <p>Vesting requires active engagement. We define this loosely. You are considered active if you contribute at least one substantive deliverable per month, or maintain ownership of one shared artifact (the marketing dashboard, the Instagram content calendar, weekly memo, similar). We do not track hours.</p>
+    <p>If you go silent for a full quarter, vesting pauses for that quarter and resumes when you re-engage. Mutual: this is your protection too. If Dear shuts down or stops operating, your vested portion stays vested.</p>
+
+    <hr class="rule">
+
+    <h2>What this is not</h2>
+    <ul class="bare">
+      <li>Not real ownership of Elsewhere Index LLC. You hold no membership units.</li>
+      <li>Not voting rights or board representation.</li>
+      <li>Not a K-1. Income from Dear, when it flows, comes through your portage employment, not as partnership distribution.</li>
+      <li>Not an obligation. If Dear never makes meaningful money, you owe nothing back.</li>
+      <li>Not a salary. While you are part-time and unpaid, the phantom equity vests but pays nothing. Cash flows only when triggers fire.</li>
+    </ul>
+
+    <hr class="rule">
+
+    <h2>What we'd actually do next</h2>
+
+    <div class="step">
+      <div class="when">This week</div>
+      <div class="what">Sign the master contractor agreement (separate document). Covers IP, confidentiality, scope, termination. Foundation, not equity.</div>
+    </div>
+
+    <div class="step">
+      <div class="when">Now through formal start</div>
+      <div class="what">You stay at 16 hours per week maximum. One long day or two work days. Your call when and how. No fixed schedule, no Slack-availability expectation, free to take other work.</div>
+    </div>
+
+    <div class="step">
+      <div class="when">Within 30 days</div>
+      <div class="what">A real conversation about your post-launch commitment level. No numbers required. Just whether you want to ramp up, stay where you are, or step back.</div>
+    </div>
+
+    <div class="step">
+      <div class="when">When Dear hits $5,000 MRR</div>
+      <div class="what">We paper this phantom equity letter. If you are going near-full-time at that point, we set up portage salarial first.</div>
+    </div>
+
+    <div class="step">
+      <div class="when">When Dear hits $10,000 MRR sustained 60 days</div>
+      <div class="what">Cut B activates. First monthly payments flow.</div>
+    </div>
+
+    <div class="step">
+      <div class="when">Q4 2026 / Q1 2027 (if Dear has real revenue)</div>
+      <div class="what">We revisit creating a French SAS subsidiary to issue BSPCE. Replaces this structure. Same percentages, roughly half the tax leakage. Bigger move, separate decision.</div>
+    </div>
+
+    <div class="footer">
+      <p>This is a draft proposal, not a contract. Numbers and structure are illustrative and subject to mutual agreement and counsel review. Final terms will be papered separately when we are ready.</p>
+    </div>
+  </div>
+</body>
+</html>
