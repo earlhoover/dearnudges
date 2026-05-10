@@ -7,7 +7,7 @@
   <meta name="robots" content="noindex, nofollow">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #FAF8F5;
@@ -15,6 +15,7 @@
       --soft: #6B6B6B;
       --rule: #D9D5CD;
       --accent: #6B8AD6;
+      --accent-soft: #EAF0FA;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -26,13 +27,13 @@
       color: var(--ink);
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       font-size: 16px;
-      line-height: 1.65;
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      padding: 5rem 1.5rem 8rem;
+      padding: 4rem 1.5rem 7rem;
     }
 
     .page {
-      max-width: 640px;
+      max-width: 680px;
       margin: 0 auto;
     }
 
@@ -41,35 +42,23 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--soft);
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
 
     h1 {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 2.75rem;
-      font-weight: 400;
-      line-height: 1.15;
-      letter-spacing: -0.015em;
-      margin-bottom: 0.75rem;
-    }
-
-    .lede {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 1.15rem;
-      font-weight: 300;
-      font-style: italic;
-      color: var(--soft);
-      margin-bottom: 4rem;
-      letter-spacing: 0.005em;
+      font-size: 2.25rem;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 3rem;
     }
 
     h2 {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 1.6rem;
-      font-weight: 400;
-      letter-spacing: -0.005em;
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
       margin-top: 0;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1rem;
     }
 
     h3 {
@@ -83,29 +72,121 @@
     }
 
     p {
-      margin-bottom: 1.25rem;
-      max-width: 60ch;
+      margin-bottom: 1rem;
+      max-width: 62ch;
     }
 
     .rule {
       border: 0;
       border-top: 1px solid var(--rule);
-      margin: 4.5rem 0;
+      margin: 4rem 0;
     }
 
-    .figure {
+    /* CALCULATOR */
+    .calc {
       background: white;
       border: 1px solid var(--rule);
-      padding: 1.75rem 1.5rem;
-      margin: 1.5rem 0 2rem;
+      padding: 1.75rem;
+      margin: 1.5rem 0 0;
     }
 
-    .figure-title {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 1.05rem;
-      font-weight: 500;
-      margin-bottom: 1.25rem;
+    .calc-defs {
+      font-size: 0.92rem;
       color: var(--ink);
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .calc-defs .def {
+      padding: 0.35rem 0;
+    }
+
+    .calc-defs .def strong {
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .calc-inputs {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .calc-input label {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--soft);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.5rem;
+    }
+
+    .calc-input .input-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .calc-input .input-row input[type="range"] {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .calc-input .calc-value {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--ink);
+      font-variant-numeric: tabular-nums;
+      min-width: 110px;
+      text-align: right;
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 3px;
+      background: var(--rule);
+      outline: none;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      background: var(--accent);
+      border-radius: 50%;
+      cursor: pointer;
+      border: 3px solid white;
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      background: var(--accent);
+      border-radius: 50%;
+      cursor: pointer;
+      border: 3px solid white;
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+
+    .calc-output {
+      padding-top: 0.5rem;
+    }
+
+    .calc-assumptions {
+      font-size: 0.78rem;
+      color: var(--soft);
+      margin-top: 1.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--rule);
+      line-height: 1.55;
+      max-width: none;
     }
 
     .row {
@@ -113,7 +194,7 @@
       justify-content: space-between;
       gap: 1rem;
       padding: 0.55rem 0;
-      font-size: 0.94rem;
+      font-size: 0.92rem;
       border-bottom: 1px dotted var(--rule);
     }
 
@@ -131,20 +212,21 @@
       font-feature-settings: "tnum";
       white-space: nowrap;
     }
-    .row.highlight .label { color: var(--ink); }
-    .row.highlight .value { color: var(--accent); }
+    .row.highlight .label { color: var(--ink); font-weight: 500; }
+    .row.highlight .value { color: var(--accent); font-weight: 600; }
 
+    /* TIMELINE */
     .timeline {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 0;
-      margin: 2rem 0;
+      margin: 1.5rem 0;
       border: 1px solid var(--rule);
       background: white;
     }
 
     .quarter {
-      padding: 1.25rem 0.75rem;
+      padding: 1.1rem 0.75rem;
       border-right: 1px solid var(--rule);
       text-align: center;
     }
@@ -152,13 +234,13 @@
     .quarter:last-child { border-right: 0; }
 
     .quarter .year {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 1rem;
+      font-size: 0.92rem;
+      font-weight: 600;
       color: var(--ink);
     }
     .quarter .pct {
       color: var(--accent);
-      font-weight: 500;
+      font-weight: 600;
       margin-top: 0.4rem;
       font-size: 0.95rem;
       font-variant-numeric: tabular-nums;
@@ -172,13 +254,13 @@
 
     ul.bare {
       list-style: none;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1rem;
     }
 
     ul.bare li {
       padding: 0.7rem 0;
       border-bottom: 1px dotted var(--rule);
-      max-width: 60ch;
+      max-width: 62ch;
       font-size: 0.95rem;
     }
 
@@ -189,53 +271,48 @@
     .small {
       font-size: 0.88rem;
       color: var(--soft);
-      max-width: 56ch;
+      max-width: 60ch;
       line-height: 1.6;
     }
 
     .footer {
-      margin-top: 6rem;
+      margin-top: 5rem;
       padding-top: 2rem;
       border-top: 1px solid var(--rule);
       font-size: 0.82rem;
       color: var(--soft);
-      max-width: 60ch;
+      max-width: 62ch;
       line-height: 1.65;
-    }
-
-    em {
-      font-family: 'Fraunces', Georgia, serif;
-      font-style: italic;
     }
 
     .accent { color: var(--accent); }
 
     .step {
-      padding: 1.5rem 0;
+      padding: 1.3rem 0;
       border-bottom: 1px solid var(--rule);
     }
 
     .step:last-child { border-bottom: 0; }
 
     .step .when {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 1.05rem;
-      font-weight: 500;
+      font-size: 0.98rem;
+      font-weight: 600;
       margin-bottom: 0.4rem;
       color: var(--ink);
     }
 
     .step .what {
       color: var(--ink);
-      font-size: 0.95rem;
-      max-width: 56ch;
+      font-size: 0.94rem;
+      max-width: 58ch;
       line-height: 1.6;
     }
 
     @media (max-width: 540px) {
       body { padding: 3rem 1.25rem 5rem; }
-      h1 { font-size: 2.1rem; }
-      .figure { padding: 1.25rem 1rem; }
+      h1 { font-size: 1.85rem; }
+      .calc { padding: 1.25rem; }
+      .calc-input .calc-value { min-width: 90px; font-size: 0.9rem; }
       .timeline { grid-template-columns: repeat(2, 1fr); }
       .quarter:nth-child(2) { border-right: 0; }
       .quarter:nth-child(1), .quarter:nth-child(2) { border-bottom: 1px solid var(--rule); }
@@ -246,59 +323,79 @@
   <div class="page">
     <div class="meta">Private proposal · Draft · 2026-05</div>
     <h1>Joining Dear</h1>
-    <p class="lede">A proposal for Giacomo, in writing.</p>
 
-    <h2>The shape of it</h2>
-    <p>Before any number, the philosophy. Dear is bootstrapped. There is no investor, no exit plan, no liquidity event scheduled. The way you share in what we build is through <em>phantom equity</em>: a written contractual right to a cut of what Dear earns or sells for, paid in cash when those triggers fire, vesting over time.</p>
-    <p>It is not real ownership of Elsewhere Index LLC. There are no shares, no votes, no K-1, no tax obligations on you before money has flowed. Just a written promise that scales with the company. If Dear works, this is real. If Dear doesn't, this costs you nothing.</p>
-    <p>Two cuts, layered.</p>
+    <h2>Quick estimate</h2>
+    <p class="small">Phantom equity at Dear has two cuts. Adjust the assumptions below to see what they look like at different scales.</p>
+
+    <div class="calc">
+      <div class="calc-defs">
+        <div class="def"><strong>Cut A</strong> · 5% of net proceeds if/when Dear is sold.</div>
+        <div class="def"><strong>Cut B</strong> · 3% of monthly net revenue above $10K MRR. Grows to 6% if MRR sustains $25K+ for 60 days.</div>
+      </div>
+
+      <div class="calc-inputs">
+        <div class="calc-input">
+          <label>Active users</label>
+          <div class="input-row">
+            <input type="range" id="users" min="0" max="100000" step="500" value="25000">
+            <div class="calc-value" id="usersVal">25,000</div>
+          </div>
+        </div>
+
+        <div class="calc-input">
+          <label>% who subscribe</label>
+          <div class="input-row">
+            <input type="range" id="subRate" min="0.5" max="15" step="0.1" value="3">
+            <div class="calc-value" id="subRateVal">3.0%</div>
+          </div>
+        </div>
+
+        <div class="calc-input">
+          <label>Hypothetical sale price (Cut A scenario)</label>
+          <div class="input-row">
+            <input type="range" id="sale" min="0" max="50000000" step="500000" value="5000000">
+            <div class="calc-value" id="saleVal">$5,000,000</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-output">
+        <div class="row"><span class="label">Derived monthly net revenue</span><span class="value" id="mrrOut">$1,594</span></div>
+        <div class="row"><span class="label">Cut B rate (auto)</span><span class="value" id="rateOut">0%</span></div>
+        <div class="row"><span class="label">Cut B gross to portage</span><span class="value" id="cutBGrossOut">$0</span></div>
+        <div class="row highlight"><span class="label">Cut B net to your bank, monthly</span><span class="value" id="cutBNetOut">~$0</span></div>
+        <div class="row"><span class="label">Cut A gross to portage at this sale price</span><span class="value" id="cutAGrossOut">$250,000</span></div>
+        <div class="row highlight"><span class="label">Cut A net to your bank, today's structure</span><span class="value" id="cutANetOut">~$95,000</span></div>
+      </div>
+
+      <div class="calc-assumptions">
+        Assumptions: blended ARPU $2.50/month per subscriber (mix of $2.99/mo and $14.99/yr plans), Apple's 15% small-business platform cut, French tax leakage ~62% on payouts via portage salarial. Converting to BSPCE through a French SAS subsidiary in Q4 2026 or Q1 2027 would roughly cut the tax leakage in half, doubling the net figures shown above.
+      </div>
+    </div>
 
     <hr class="rule">
 
-    <h2>Cut A &middot; when Dear is sold</h2>
-    <p>You receive <span class="accent">5%</span> of net proceeds from any sale of Dear or Elsewhere Index LLC. Net means sale price minus broker fees, legal costs, and any debt outstanding. If Dear is never sold, this is zero.</p>
-
-    <h3>Worked example, sale at $5,000,000</h3>
-    <div class="figure">
-      <div class="figure-title">Cut A payout, illustrative</div>
-      <div class="row"><span class="label">Net sale proceeds</span><span class="value">$5,000,000</span></div>
-      <div class="row"><span class="label">Your 5%, gross to portage account</span><span class="value">$250,000</span></div>
-      <div class="row"><span class="label">After French tax leakage (~62%)</span><span class="value">−$155,000</span></div>
-      <div class="row highlight"><span class="label">Net to your bank, today's structure</span><span class="value">~$95,000</span></div>
-    </div>
-    <p class="small">In <em>Q4 2026 / Q1 2027</em>, if Dear has real revenue, we revisit moving this structure to BSPCE through a French SAS subsidiary. Same 5%, roughly 30% all-in tax instead of ~62%. Same example would net you ~$175,000 instead of ~$95,000.</p>
+    <h2>Overview</h2>
+    <p>Dear is bootstrapped. No investors, no planned exit. The way you share in what we build is phantom equity: a written contract giving you a cut of Dear's earnings or sale proceeds, paid in cash when triggers fire, vesting over time.</p>
+    <p>Not real ownership of Elsewhere Index LLC. No shares, no votes, no K-1, no tax obligations until money flows. A written promise that scales with the company. If Dear works, this is real. If Dear doesn't, this costs you nothing.</p>
 
     <hr class="rule">
 
-    <h2>Cut B &middot; ongoing share of monthly revenue</h2>
-    <p>You receive <span class="accent">3%</span> of Dear's monthly net revenue above $10,000 MRR, paid monthly. Net means revenue after Apple's platform cut and infrastructure costs. Below $10K MRR, this is zero.</p>
-    <p>Cut B grows by an additional <span class="accent">3%</span> (to 6% total) if MRR sustains $25,000+ for 60 consecutive days. That's the milestone ramp.</p>
+    <h2>Cut A · if/when Dear is sold</h2>
+    <p>5% of net proceeds if/when Dear is sold. Sale here means a sale of Dear specifically (the app, the brand, the IP, the user base, the App Store and Play Store listings, anything Dear-related), not a sale of Elsewhere Index LLC. Net = sale price minus broker fees, legal costs, and any Dear-related debt outstanding. If Dear is never sold, this is zero.</p>
+    <p class="small">In Q4 2026 or Q1 2027, if Dear has real revenue, we revisit converting this to BSPCE through a French SAS subsidiary. Same 5%, roughly 30% all-in tax instead of ~62%. Roughly doubles the net to you on the same sale event.</p>
 
-    <h3>Worked example, $15,000 MRR</h3>
-    <div class="figure">
-      <div class="figure-title">Cut B monthly payout, illustrative</div>
-      <div class="row"><span class="label">Monthly net revenue</span><span class="value">$15,000</span></div>
-      <div class="row"><span class="label">Above $10K threshold</span><span class="value">$5,000</span></div>
-      <div class="row"><span class="label">Your 3%, gross to portage account</span><span class="value">$150</span></div>
-      <div class="row"><span class="label">After French tax leakage (~62%)</span><span class="value">−$93</span></div>
-      <div class="row highlight"><span class="label">Net to your bank, monthly</span><span class="value">~$57</span></div>
-    </div>
+    <hr class="rule">
 
-    <h3>Worked example, $25,000 MRR (after milestone)</h3>
-    <div class="figure">
-      <div class="figure-title">Cut B monthly payout, illustrative</div>
-      <div class="row"><span class="label">Monthly net revenue</span><span class="value">$25,000</span></div>
-      <div class="row"><span class="label">Above $10K threshold</span><span class="value">$15,000</span></div>
-      <div class="row"><span class="label">Your 6%, gross to portage account</span><span class="value">$900</span></div>
-      <div class="row"><span class="label">After French tax leakage (~62%)</span><span class="value">−$558</span></div>
-      <div class="row highlight"><span class="label">Net to your bank, monthly</span><span class="value">~$342</span></div>
-    </div>
+    <h2>Cut B · monthly revenue share</h2>
+    <p>3% of Dear's monthly net revenue above $10,000 MRR, paid monthly. Net = revenue after Apple's platform cut and infrastructure costs. Below $10K MRR, zero.</p>
+    <p>Grows to 6% if MRR sustains $25,000+ for 60 consecutive days. That's the milestone ramp.</p>
 
     <hr class="rule">
 
     <h2>Vesting</h2>
-    <p>Both Cut A and Cut B vest on the same schedule. <em>Four years, with a twelve-month cliff.</em></p>
-    <p>The cliff is the first 12 months. During the cliff, nothing vests. If you leave inside it, you forfeit everything. Once the cliff crosses, 25% of your full grant becomes yours, immediately. From there, another 1/48th vests each month until you are fully vested at month 48.</p>
+    <p>Both cuts vest on the same schedule: 4 years, 12-month cliff.</p>
+    <p>The first 12 months are the cliff. Nothing vests during the cliff. Leave before month 12 and you forfeit everything. At month 12, 25% vests immediately. From there, 1/48th vests each month through month 48.</p>
 
     <div class="timeline">
       <div class="quarter">
@@ -325,9 +422,9 @@
 
     <hr class="rule">
 
-    <h2>What active engagement means</h2>
-    <p>Vesting requires active engagement. We define this loosely. You are considered active if you contribute at least one substantive deliverable per month, or maintain ownership of one shared artifact (the marketing dashboard, the Instagram content calendar, weekly memo, similar). We do not track hours.</p>
-    <p>If you go silent for a full quarter, vesting pauses for that quarter and resumes when you re-engage. Mutual: this is your protection too. If Dear shuts down or stops operating, your vested portion stays vested.</p>
+    <h2>Active engagement</h2>
+    <p>Vesting requires active engagement, defined loosely: at least one substantive deliverable per month, or ownership of one shared artifact (a dashboard, a content calendar, a weekly memo, or similar). No hour tracking.</p>
+    <p>If you go silent for a full quarter, vesting pauses for that quarter and resumes when you re-engage. If Dear shuts down or stops operating, your vested portion stays vested.</p>
 
     <hr class="rule">
 
@@ -342,7 +439,7 @@
 
     <hr class="rule">
 
-    <h2>What we'd actually do next</h2>
+    <h2>Timeline</h2>
 
     <div class="step">
       <div class="when">This week</div>
@@ -351,17 +448,17 @@
 
     <div class="step">
       <div class="when">Now through formal start</div>
-      <div class="what">You stay at 16 hours per week maximum. One long day or two work days. Your call when and how. No fixed schedule, no Slack-availability expectation, free to take other work.</div>
+      <div class="what">Stay at 16 hours per week maximum. One long day or two work days. Your call when and how. No fixed schedule, no Slack-availability expectation, free to take other work.</div>
     </div>
 
     <div class="step">
       <div class="when">Within 30 days</div>
-      <div class="what">A real conversation about your post-launch commitment level. No numbers required. Just whether you want to ramp up, stay where you are, or step back.</div>
+      <div class="what">Conversation about post-launch commitment level. No numbers required.</div>
     </div>
 
     <div class="step">
       <div class="when">When Dear hits $5,000 MRR</div>
-      <div class="what">We paper this phantom equity letter. If you are going near-full-time at that point, we set up portage salarial first.</div>
+      <div class="what">Paper this phantom equity letter. If going near-full-time at that point, set up portage salarial first.</div>
     </div>
 
     <div class="step">
@@ -371,12 +468,68 @@
 
     <div class="step">
       <div class="when">Q4 2026 / Q1 2027 (if Dear has real revenue)</div>
-      <div class="what">We revisit creating a French SAS subsidiary to issue BSPCE. Replaces this structure. Same percentages, roughly half the tax leakage. Bigger move, separate decision.</div>
+      <div class="what">Revisit creating a French SAS subsidiary to issue BSPCE. Replaces this structure. Same percentages, roughly half the tax leakage. Separate decision.</div>
     </div>
 
     <div class="footer">
-      <p>This is a draft proposal, not a contract. Numbers and structure are illustrative and subject to mutual agreement and counsel review. Final terms will be papered separately when we are ready.</p>
+      <p>Draft proposal, not a contract. Numbers and structure are illustrative and subject to mutual agreement and counsel review. Calculator assumptions reflect 2026 baseline data and should be re-checked when this letter is papered.</p>
     </div>
   </div>
+
+  <script>
+    function fmt(n, prefix) {
+      prefix = prefix || '$';
+      if (n === 0) return prefix + '0';
+      return prefix + Math.round(n).toLocaleString();
+    }
+
+    function fmtNum(n) {
+      return Math.round(n).toLocaleString();
+    }
+
+    function recalc() {
+      var users = parseInt(document.getElementById('users').value, 10);
+      var subRate = parseFloat(document.getElementById('subRate').value) / 100;
+      var sale = parseInt(document.getElementById('sale').value, 10);
+
+      document.getElementById('usersVal').textContent = fmtNum(users);
+      document.getElementById('subRateVal').textContent = (subRate * 100).toFixed(1) + '%';
+      document.getElementById('saleVal').textContent = fmt(sale);
+
+      var arpu = 2.50;
+      var appleNet = 0.85;
+
+      var subscribers = users * subRate;
+      var grossMRR = subscribers * arpu;
+      var netMRR = grossMRR * appleNet;
+
+      var cutBGross = 0;
+      var rateText = '0% (below $10K MRR)';
+      if (netMRR > 25000) {
+        cutBGross = (netMRR - 10000) * 0.06;
+        rateText = '6% (above $25K MRR, milestone hit)';
+      } else if (netMRR > 10000) {
+        cutBGross = (netMRR - 10000) * 0.03;
+        rateText = '3% (between $10K and $25K MRR)';
+      }
+
+      var cutBNet = cutBGross * 0.38;
+      var cutAGross = sale * 0.05;
+      var cutANet = cutAGross * 0.38;
+
+      document.getElementById('mrrOut').textContent = fmt(netMRR);
+      document.getElementById('rateOut').textContent = rateText;
+      document.getElementById('cutBGrossOut').textContent = fmt(cutBGross) + '/mo';
+      document.getElementById('cutBNetOut').textContent = '~' + fmt(cutBNet) + '/mo';
+      document.getElementById('cutAGrossOut').textContent = fmt(cutAGross);
+      document.getElementById('cutANetOut').textContent = '~' + fmt(cutANet);
+    }
+
+    ['users', 'subRate', 'sale'].forEach(function(id) {
+      document.getElementById(id).addEventListener('input', recalc);
+    });
+
+    recalc();
+  </script>
 </body>
 </html>
