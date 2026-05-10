@@ -343,6 +343,13 @@
     .tick:last-child { transform: translateX(-100%); }
     .tick:last-child::before { left: 100%; }
 
+    .formula {
+      color: var(--soft);
+      font-size: 0.82em;
+      font-weight: 400;
+      margin-left: 0.4rem;
+    }
+
     .threshold-callout {
       background: var(--warn-bg);
       color: var(--warn-ink);
@@ -607,10 +614,10 @@
       <div class="row"><span class="label">Subscribers</span><span class="value" id="subsOut">2,000</span></div>
       <div class="row"><span class="label">Monthly net revenue (MRR)</span><span class="value" id="mrrOut">$4,250</span></div>
       <div class="row"><span class="label">Annual recurring revenue (ARR)</span><span class="value" id="arrOut">$51,000</span></div>
-      <div class="row"><span class="label">Implied sale price (ARR × multiple)</span><span class="value" id="impliedSaleOut">$255,000</span></div>
-      <div class="row"><span class="label">Cut B rate (auto)</span><span class="value" id="rateOut">0% (below $5K threshold)</span></div>
-      <div class="row highlight divider"><span class="label">Cut B monthly</span><span class="value" id="cutBGrossOut">$0</span></div>
-      <div class="row highlight divider"><span class="label">Cut A at implied sale</span><span class="value" id="cutAGrossOut">$20,400</span></div>
+      <div class="row"><span class="label">Implied sale price (multiple × ARR)</span><span class="value" id="impliedSaleOut">$255,000</span></div>
+      <div class="row highlight divider"><span class="label">Cut A at implied sale <span class="formula" id="cutAFormula"></span></span><span class="value" id="cutAGrossOut">$20,400</span></div>
+      <div class="row"><span class="label">Cut B rate (auto)</span><span class="value" id="rateOut">0% (below $1K floor)</span></div>
+      <div class="row highlight divider"><span class="label">Cut B monthly <span class="formula" id="cutBFormula"></span></span><span class="value" id="cutBGrossOut">$0</span></div>
 
       <div class="calc-assumptions">
         Figures shown are gross. Assumptions: blended ARPU $2.50/month per subscriber (mix of $2.99/mo and $14.99/yr plans), Apple's 15% small-business platform cut. Sale price is computed as ARR &times; the multiple; 4-6x is the median range for small consumer subscription apps in 2025-2026, with strategic acquisitions reaching 15-20x+. As with any compensation, French income tax and social charges apply at standard rates on the gross figures above; the BSPCE conversion planned for Q4 2026 / Q1 2027 is structured to materially reduce that burden.
@@ -799,6 +806,17 @@
       return { total: total, rateText: rateText };
     }
 
+    function cutBBreakdown(netMRR) {
+      if (netMRR <= FLOOR_MRR) return '';
+      if (netMRR <= TIER1_TOP) {
+        return '(5% × ' + fmt(netMRR - FLOOR_MRR) + ')';
+      }
+      if (netMRR <= TIER2_TOP) {
+        return '(5% × ' + fmt(TIER1_TOP - FLOOR_MRR) + ' + 8% × ' + fmt(netMRR - TIER1_TOP) + ')';
+      }
+      return '(5% × ' + fmt(TIER1_TOP - FLOOR_MRR) + ' + 8% × ' + fmt(TIER2_TOP - TIER1_TOP) + ' + 10% × ' + fmt(netMRR - TIER2_TOP) + ')';
+    }
+
     var LOG_HIGH_RANGE = Math.log10(500000000) - 5;
 
     function sliderToUsers(pos) {
@@ -853,6 +871,8 @@
       document.getElementById('rateOut').textContent = rateText;
       document.getElementById('cutBGrossOut').textContent = fmt(cutBGross) + (cutBGross > 0 ? '/mo' : '');
       document.getElementById('cutAGrossOut').textContent = fmt(cutAGross);
+      document.getElementById('cutAFormula').textContent = '(' + eq.cutA + '% × ' + fmt(sale) + ')';
+      document.getElementById('cutBFormula').textContent = cutBBreakdown(netMRR);
     }
 
     var inputs = ['users', 'subRate', 'multiple'];
