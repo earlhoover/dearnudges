@@ -303,6 +303,46 @@
       box-shadow: 0 0 0 1px var(--accent);
     }
 
+    .slider-with-ticks {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .slider-with-ticks input[type="range"] {
+      width: 100%;
+    }
+
+    .slider-ticks {
+      position: relative;
+      height: 1.4rem;
+      margin-top: 0.45rem;
+    }
+
+    .tick {
+      position: absolute;
+      transform: translateX(-50%);
+      font-size: 0.7rem;
+      color: var(--soft);
+      white-space: nowrap;
+      letter-spacing: 0.01em;
+      padding-top: 0.35rem;
+    }
+
+    .tick::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 1px;
+      height: 0.28rem;
+      background: var(--rule);
+    }
+
+    .tick:first-child { transform: translateX(0); }
+    .tick:first-child::before { left: 0; }
+    .tick:last-child { transform: translateX(-100%); }
+    .tick:last-child::before { left: 100%; }
+
     .threshold-callout {
       background: var(--warn-bg);
       color: var(--warn-ink);
@@ -513,7 +553,18 @@
         <div class="calc-input">
           <label>Active users</label>
           <div class="input-row">
-            <input type="range" id="users" min="0" max="1000" step="1" value="540">
+            <div class="slider-with-ticks">
+              <input type="range" id="users" min="0" max="1000" step="1" value="250">
+              <div class="slider-ticks">
+                <span class="tick" style="left: 0%;">0</span>
+                <span class="tick" style="left: 25%;">50K</span>
+                <span class="tick" style="left: 50%;">100K</span>
+                <span class="tick" style="left: 63.5%;">1M</span>
+                <span class="tick" style="left: 77%;">10M</span>
+                <span class="tick" style="left: 90.5%;">100M</span>
+                <span class="tick" style="left: 100%;">500M</span>
+              </div>
+            </div>
             <div class="calc-value" id="usersVal">50,000</div>
           </div>
         </div>
@@ -734,11 +785,15 @@
       return { total: total, rateText: rateText };
     }
 
-    var USERS_LOG_MAX = Math.log10(500000000);
+    var LOG_HIGH_RANGE = Math.log10(500000000) - 5;
 
     function sliderToUsers(pos) {
       if (pos <= 0) return 0;
-      return Math.round(Math.pow(10, (pos / 1000) * USERS_LOG_MAX));
+      if (pos <= 500) {
+        return Math.round(pos * 200);
+      }
+      var logVal = 5 + ((pos - 500) / 500) * LOG_HIGH_RANGE;
+      return Math.round(Math.pow(10, logVal));
     }
 
     function recalc() {
