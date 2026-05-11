@@ -350,6 +350,41 @@
       margin-left: 0.4rem;
     }
 
+    .app-ticks {
+      position: relative;
+      height: 1.2rem;
+      margin-top: 0.5rem;
+    }
+
+    .app-tick {
+      position: absolute;
+      transform: translateX(-50%);
+      font-size: 0.7rem;
+      color: var(--accent);
+      white-space: nowrap;
+      letter-spacing: 0.01em;
+      padding-top: 0.3rem;
+    }
+
+    .app-tick::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 1px;
+      height: 0.25rem;
+      background: var(--accent);
+      opacity: 0.5;
+    }
+
+    .app-ticks-note {
+      font-size: 0.7rem;
+      color: var(--soft);
+      font-style: italic;
+      margin-top: 0.5rem;
+      letter-spacing: 0.01em;
+    }
+
     .threshold-callout {
       background: var(--warn-bg);
       color: var(--warn-ink);
@@ -571,6 +606,12 @@
                 <span class="tick" style="left: 90.5%;">100M</span>
                 <span class="tick" style="left: 100%;">500M</span>
               </div>
+              <div class="app-ticks">
+                <span class="app-tick" style="left: 73%;">Calm 5M</span>
+                <span class="app-tick" style="left: 89%;">Tinder 75M</span>
+                <span class="app-tick" style="left: 97%;">LinkedIn 310M</span>
+              </div>
+              <div class="app-ticks-note">For reference: Facebook is 3B (~6x off the chart). WhatsApp 2.8B.</div>
             </div>
             <div class="calc-value" id="usersVal">50,000</div>
           </div>
@@ -608,7 +649,7 @@
       </div>
 
       <div class="threshold-callout" id="thresholdCallout">
-        <strong>Below the $1,000 MRR floor.</strong> Cut B pays nothing yet. Cash starts flowing the month Dear crosses $1K MRR.
+        <strong>Below the $500 MRR floor.</strong> Cut B pays nothing yet. First quarterly payout starts after Dear crosses $500 MRR.
       </div>
 
       <div class="row"><span class="label">Subscribers</span><span class="value" id="subsOut">2,000</span></div>
@@ -616,8 +657,8 @@
       <div class="row"><span class="label">Annual recurring revenue (ARR)</span><span class="value" id="arrOut">$51,000</span></div>
       <div class="row"><span class="label">Implied sale price (multiple × ARR)</span><span class="value" id="impliedSaleOut">$255,000</span></div>
       <div class="row highlight divider"><span class="label">Cut A at implied sale <span class="formula" id="cutAFormula"></span></span><span class="value" id="cutAGrossOut">$20,400</span></div>
-      <div class="row"><span class="label">Cut B rate (auto)</span><span class="value" id="rateOut">0% (below $1K floor)</span></div>
-      <div class="row highlight divider"><span class="label">Cut B monthly <span class="formula" id="cutBFormula"></span></span><span class="value" id="cutBGrossOut">$0</span></div>
+      <div class="row"><span class="label">Cut B rate (auto)</span><span class="value" id="rateOut">0% (below $500 floor)</span></div>
+      <div class="row highlight divider"><span class="label">Cut B per quarter <span class="formula" id="cutBFormula"></span></span><span class="value" id="cutBGrossOut">$0</span></div>
 
       <div class="calc-assumptions">
         Figures shown are gross. Assumptions: blended ARPU $2.50/month per subscriber (mix of $2.99/mo and $14.99/yr plans), Apple's 15% small-business platform cut. Sale price is computed as ARR &times; the multiple; 4-6x is the median range for small consumer subscription apps in 2025-2026, with strategic acquisitions reaching 15-20x+. As with any compensation, French income tax and social charges apply at standard rates on the gross figures above; the BSPCE conversion planned for Q4 2026 / Q1 2027 is structured to materially reduce that burden.
@@ -628,25 +669,27 @@
 
     <h2>What this actually is</h2>
     <p>Dear is bootstrapped. No investors, no planned exit. The way you share in what we build is phantom equity: a written contract giving you a cut of Dear's earnings or sale proceeds, paid in cash when triggers fire, vesting over time.</p>
-    <p>Not real ownership of Elsewhere Index LLC. No shares, no votes, no K-1, no tax obligations until money flows. A written promise that scales with the company. If Dear works, this is real. If Dear doesn't, this costs you nothing.</p>
+    <p>Not real equity in Dear's parent company. No shares, no votes, no K-1, no tax obligations until money flows. A written promise that scales with Dear. If Dear works, this is real. If Dear doesn't, this costs you nothing.</p>
 
     <hr class="rule">
 
     <h2>Cut A · if/when Dear is sold</h2>
-    <p>Your % of net proceeds if/when Dear is sold. Sale here means a sale of Dear specifically (the app, the brand, the IP, the user base, the App Store and Play Store listings, anything Dear-related), not a sale of Elsewhere Index LLC. Net = sale price minus broker fees, legal costs, and any Dear-related debt outstanding. If Dear is never sold, this is zero.</p>
+    <p>Your % of net proceeds if/when Dear is sold. Sale here means a sale of Dear specifically: the app, the brand, the IP, the user base, the App Store and Play Store listings, anything Dear-related. Net = sale price minus broker fees, legal costs, and any Dear-related debt outstanding. If Dear is never sold, this is zero.</p>
     <p class="small">In Q4 2026 or Q1 2027, if Dear has real revenue, we revisit converting this to BSPCE through a French SAS subsidiary, a tax-optimized structure that materially improves your take-home on payouts.</p>
 
     <hr class="rule">
 
-    <h2>Cut B · monthly revenue share</h2>
-    <p>A tiered share of Dear's monthly net revenue, paid monthly. Net = revenue after Apple's platform cut. Below $1,000 MRR, zero. Above $1K MRR, the rate climbs in brackets:</p>
+    <h2>Cut B · quarterly revenue share</h2>
+    <p>A tiered share of Dear's net revenue, paid quarterly. Net = revenue after Apple's platform cut. Below $500 MRR, zero. Above $500 MRR, the rate climbs in brackets:</p>
     <ul class="bare">
+      <li><strong>2%</strong> on MRR from $500 to $1,000</li>
       <li><strong>5%</strong> on MRR from $1,000 to $5,000</li>
       <li><strong>8%</strong> on MRR from $5,000 to $25,000</li>
       <li><strong>10%</strong> on MRR above $25,000</li>
     </ul>
-    <p>The brackets compound, the way tax brackets do. At $10K MRR you earn 5% on the first $4K above the floor plus 8% on the next $5K, not a flat rate on the whole thing.</p>
-    <p class="small">Cash-flow note: payments adjust to actual cash availability. If a given month's free cash flow is negative, that month's Cut B accrues and is paid out the next cash-positive month. Nothing forfeited. Any unsettled balance at sale is paid out of sale proceeds before Cut A is calculated.</p>
+    <p>The brackets compound, the way tax brackets do. At $10K MRR you earn 2% on the first $500 above the floor plus 5% on the next $4K plus 8% on the next $5K, not a flat rate on the whole thing.</p>
+    <p class="small">Payouts are quarterly to keep bookkeeping simple. Cut B is calculated on the quarter's MRR and paid at the end of the quarter (within 30 days).</p>
+    <p class="small">Cash-flow note: payments adjust to actual cash availability. If a given quarter's free cash flow is negative, that quarter's Cut B accrues and is paid out the next cash-positive quarter. Nothing forfeited. Any unsettled balance at sale is paid out of sale proceeds before Cut A is calculated.</p>
 
     <hr class="rule">
 
@@ -687,7 +730,7 @@
 
     <h2>What this is not</h2>
     <ul class="bare">
-      <li>Not real ownership of Elsewhere Index LLC. You hold no membership units.</li>
+      <li>Not corporate equity. You hold no shares or membership units.</li>
       <li>Not voting rights or board representation.</li>
       <li>Not a K-1. Income from Dear, when it flows, comes through your portage employment, not as partnership distribution.</li>
       <li>Not an obligation. If Dear never makes meaningful money, you owe nothing back.</li>
@@ -714,13 +757,18 @@
     </div>
 
     <div class="step">
+      <div class="when">When Dear hits $500 MRR</div>
+      <div class="what">Cut B activates at the 2% tier. First quarterly payout flows at the end of that quarter.</div>
+    </div>
+
+    <div class="step">
       <div class="when">When Dear hits $5,000 MRR</div>
-      <div class="what">Cut B activates. First monthly payments flow. Phantom equity letter papered around the same time.</div>
+      <div class="what">Cut B at the 5% tier. Phantom equity letter formalized in writing if not already.</div>
     </div>
 
     <div class="step">
       <div class="when">When Dear sustains $25,000 MRR for 60 days</div>
-      <div class="what">Milestone ramp on Cut B activates.</div>
+      <div class="what">Cut B milestone ramp to 10% activates on revenue above $25K.</div>
     </div>
 
     <div class="step">
@@ -744,12 +792,14 @@
       return Math.round(n).toLocaleString();
     }
 
-    var FLOOR_MRR = 1000;
-    var TIER1_TOP = 5000;
-    var TIER2_TOP = 25000;
-    var TIER1_RATE = 0.05;
-    var TIER2_RATE = 0.08;
-    var TIER3_RATE = 0.10;
+    var FLOOR_MRR = 500;
+    var TIER1_TOP = 1000;
+    var TIER2_TOP = 5000;
+    var TIER3_TOP = 25000;
+    var TIER1_RATE = 0.02;
+    var TIER2_RATE = 0.05;
+    var TIER3_RATE = 0.08;
+    var TIER4_RATE = 0.10;
     var ARPU = 2.50;
     var APPLE_NET = 0.85;
 
@@ -778,7 +828,7 @@
 
     function calculateCutB(netMRR) {
       if (netMRR <= FLOOR_MRR) {
-        return { total: 0, rateText: '0% (below $1K floor)' };
+        return { total: 0, rateText: '0% (below $500 floor)' };
       }
 
       var t1Income = Math.max(0, Math.min(netMRR, TIER1_TOP) - FLOOR_MRR);
@@ -792,29 +842,40 @@
 
       var t3Income = 0;
       if (netMRR > TIER2_TOP) {
-        t3Income = netMRR - TIER2_TOP;
+        t3Income = Math.min(netMRR, TIER3_TOP) - TIER2_TOP;
       }
       var t3Cut = t3Income * TIER3_RATE;
 
-      var total = t1Cut + t2Cut + t3Cut;
+      var t4Income = 0;
+      if (netMRR > TIER3_TOP) {
+        t4Income = netMRR - TIER3_TOP;
+      }
+      var t4Cut = t4Income * TIER4_RATE;
+
+      var total = t1Cut + t2Cut + t3Cut + t4Cut;
 
       var rateText;
-      if (netMRR <= TIER1_TOP) rateText = '5% tier ($1K-$5K range)';
-      else if (netMRR <= TIER2_TOP) rateText = '5% / 8% (in $5K-$25K range)';
-      else rateText = '5% / 8% / 10% (in $25K+ range)';
+      if (netMRR <= TIER1_TOP) rateText = '2% tier ($500-$1K range)';
+      else if (netMRR <= TIER2_TOP) rateText = '2% / 5% (in $1K-$5K range)';
+      else if (netMRR <= TIER3_TOP) rateText = '2% / 5% / 8% (in $5K-$25K range)';
+      else rateText = '2% / 5% / 8% / 10% (in $25K+ range)';
 
       return { total: total, rateText: rateText };
     }
 
     function cutBBreakdown(netMRR) {
       if (netMRR <= FLOOR_MRR) return '';
+      var parts = '';
       if (netMRR <= TIER1_TOP) {
-        return '(5% × ' + fmt(netMRR - FLOOR_MRR) + ')';
+        parts = '2% × ' + fmt(netMRR - FLOOR_MRR);
+      } else if (netMRR <= TIER2_TOP) {
+        parts = '2% × ' + fmt(TIER1_TOP - FLOOR_MRR) + ' + 5% × ' + fmt(netMRR - TIER1_TOP);
+      } else if (netMRR <= TIER3_TOP) {
+        parts = '2% × ' + fmt(TIER1_TOP - FLOOR_MRR) + ' + 5% × ' + fmt(TIER2_TOP - TIER1_TOP) + ' + 8% × ' + fmt(netMRR - TIER2_TOP);
+      } else {
+        parts = '2% × ' + fmt(TIER1_TOP - FLOOR_MRR) + ' + 5% × ' + fmt(TIER2_TOP - TIER1_TOP) + ' + 8% × ' + fmt(TIER3_TOP - TIER2_TOP) + ' + 10% × ' + fmt(netMRR - TIER3_TOP);
       }
-      if (netMRR <= TIER2_TOP) {
-        return '(5% × ' + fmt(TIER1_TOP - FLOOR_MRR) + ' + 8% × ' + fmt(netMRR - TIER1_TOP) + ')';
-      }
-      return '(5% × ' + fmt(TIER1_TOP - FLOOR_MRR) + ' + 8% × ' + fmt(TIER2_TOP - TIER1_TOP) + ' + 10% × ' + fmt(netMRR - TIER2_TOP) + ')';
+      return '(' + parts + ') × 3 months';
     }
 
     var LOG_HIGH_RANGE = Math.log10(500000000) - 5;
@@ -869,7 +930,7 @@
       document.getElementById('arrOut').textContent = fmt(arr);
       document.getElementById('impliedSaleOut').textContent = fmt(sale);
       document.getElementById('rateOut').textContent = rateText;
-      document.getElementById('cutBGrossOut').textContent = fmt(cutBGross) + (cutBGross > 0 ? '/mo' : '');
+      document.getElementById('cutBGrossOut').textContent = fmt(cutBGross * 3) + (cutBGross > 0 ? '/qtr' : '');
       document.getElementById('cutAGrossOut').textContent = fmt(cutAGross);
       document.getElementById('cutAFormula').textContent = '(' + eq.cutA + '% × ' + fmt(sale) + ')';
       document.getElementById('cutBFormula').textContent = cutBBreakdown(netMRR);
