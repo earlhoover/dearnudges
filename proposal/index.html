@@ -561,7 +561,7 @@
       <div class="hero-grid">
         <div class="hero-card">
           <div class="card-tag">Cut A</div>
-          <div class="card-number" id="heroCutA">8%</div>
+          <div class="card-number" id="heroCutA">5%</div>
           <div class="card-desc">of net proceeds, if/when Dear is sold</div>
         </div>
         <div class="hero-card">
@@ -570,13 +570,14 @@
             <div class="tier-row"><span class="tier-pct">2%</span><span class="tier-range">MRR from $500 to $1K</span></div>
             <div class="tier-row"><span class="tier-pct">5%</span><span class="tier-range">MRR from $1K to $5K</span></div>
             <div class="tier-row"><span class="tier-pct">8%</span><span class="tier-range">MRR from $5K to $25K</span></div>
-            <div class="tier-row"><span class="tier-pct">10%</span><span class="tier-range">MRR above $25K</span></div>
+            <div class="tier-row"><span class="tier-pct">10%</span><span class="tier-range">MRR from $25K to $250K</span></div>
+            <div class="tier-row"><span class="tier-pct">3%</span><span class="tier-range">MRR above $250K</span></div>
           </div>
           <div class="card-desc">Quarterly revenue share, tiered. Nothing below $500 MRR.</div>
         </div>
       </div>
       <div class="hero-meta">
-        4-year vesting <span class="dot">·</span> 12-month cliff <span class="dot">·</span> Paid in cash when triggers fire
+        4-year vesting <span class="dot">·</span> 6-month cliff <span class="dot">·</span> Paid in cash when triggers fire
       </div>
     </section>
 
@@ -586,8 +587,8 @@
         <div class="calc-input">
           <label>Cut A · % of sale</label>
           <div class="input-row">
-            <input type="range" id="cutA" min="1" max="30" step="0.5" value="8">
-            <div class="calc-value" id="cutAVal">8%</div>
+            <input type="range" id="cutA" min="1" max="30" step="0.5" value="5">
+            <div class="calc-value" id="cutAVal">5%</div>
           </div>
         </div>
       </div>
@@ -680,8 +681,9 @@
 
     <hr class="rule">
 
-    <h2>Cut A · if/when Dear is sold</h2>
-    <p>Your % of net proceeds if/when Dear is sold. Sale here means a sale of Dear specifically: the app, the brand, the IP, the user base, the App Store and Play Store listings, anything Dear-related. Net = sale price minus broker fees, legal costs, and any Dear-related debt outstanding. If Dear is never sold, this is zero.</p>
+    <h2>Cut A · if/when Dear has a liquidity event</h2>
+    <p>Your % of net proceeds on any liquidity event for Dear. This covers asset sales (someone buys the app, brand, IP, App Store and Play Store listings, user base), stock sales of any entity that holds Dear, mergers, and other equivalent transactions. Net = transaction proceeds minus broker fees, legal costs, and any Dear-related debt outstanding. If no liquidity event ever happens, this is zero.</p>
+    <p>Cut A may be diluted pro-rata when Dear adds phantom equity grants to other team members. The founder is diluted on the same basis, so new grants don't disproportionately cut your share.</p>
     <p class="small">In Q4 2026 or Q1 2027, if Dear has real revenue, we revisit converting this to BSPCE through a French SAS subsidiary, a tax-optimized structure that materially improves your take-home on payouts.</p>
 
     <hr class="rule">
@@ -692,23 +694,24 @@
       <li><strong>2%</strong> on MRR from $500 to $1,000</li>
       <li><strong>5%</strong> on MRR from $1,000 to $5,000</li>
       <li><strong>8%</strong> on MRR from $5,000 to $25,000</li>
-      <li><strong>10%</strong> on MRR above $25,000</li>
+      <li><strong>10%</strong> on MRR from $25,000 to $250,000</li>
+      <li><strong>3%</strong> on MRR above $250,000 (digressive top tier)</li>
     </ul>
-    <p>The brackets compound, the way tax brackets do. At $10K MRR you earn 2% on the first $500 above the floor plus 5% on the next $4K plus 8% on the next $5K, not a flat rate on the whole thing.</p>
+    <p>The brackets compound, the way tax brackets do. At $10K MRR you earn 2% on the first $500 above the floor plus 5% on the next $4K plus 8% on the next $5K, not a flat rate on the whole thing. The top tier steps down to 3% above $250K MRR so the structure stays sustainable at scale.</p>
     <p class="small">Payouts are quarterly to keep bookkeeping simple. Cut B is calculated on the quarter's MRR and paid at the end of the quarter (within 30 days).</p>
     <p class="small">Cash-flow note: payments adjust to actual cash availability. If a given quarter's free cash flow is negative, that quarter's Cut B accrues and is paid out the next cash-positive quarter. Nothing forfeited. Any unsettled balance at sale is paid out of sale proceeds before Cut A is calculated.</p>
 
     <hr class="rule">
 
     <h2>Vesting</h2>
-    <p>Both cuts vest on the same schedule: 4 years, 12-month cliff.</p>
-    <p>The first 12 months are the cliff. Nothing vests during the cliff. Stay through month 12 and 25% vests immediately, yours from that point forward. From there, another 1/48th vests each month through month 48. Your vested portion stays yours even if Dear shuts down.</p>
+    <p>Both cuts vest on the same schedule: 4 years, 6-month cliff.</p>
+    <p>The first 6 months are the cliff. Nothing vests during the cliff. Stay through month 6 and 12.5% vests immediately, yours from that point forward. From there, another 1/48th vests each month through month 48. Your vested portion stays yours even if Dear shuts down.</p>
 
     <div class="timeline">
       <div class="quarter">
         <div class="year">Year 1</div>
-        <div class="pct">0% &rarr; 25%</div>
-        <div class="note">cliff at month 12</div>
+        <div class="pct">12.5% &rarr; 25%</div>
+        <div class="note">cliff at month 6</div>
       </div>
       <div class="quarter">
         <div class="year">Year 2</div>
@@ -730,8 +733,24 @@
     <hr class="rule">
 
     <h2>Active engagement</h2>
-    <p>Vesting requires active engagement, defined loosely: one substantive deliverable per month, or ownership of one shared artifact (a dashboard, a content calendar, a weekly memo, or similar). No hour tracking.</p>
-    <p>If you go silent for a full quarter, vesting pauses for that quarter and resumes when you re-engage. If Dear shuts down or stops operating, your vested portion stays yours.</p>
+    <p>Vesting requires you to be actively contributing. We define it as a real, measurable threshold rather than a vibe:</p>
+    <ul class="bare">
+      <li>An <strong>hours floor</strong> we agree on at start (currently 16 hrs/week until the role formalizes, scales up if you go near full-time)</li>
+      <li>A <strong>monthly written check-in</strong> from you summarizing what you shipped and what's next</li>
+      <li><strong>Quarterly KPIs</strong> tied to your scope (marketing performance, content cadence, growth metrics)</li>
+    </ul>
+    <p>If you miss two consecutive quarters of KPIs or stop the monthly check-ins for 60+ days, we revisit the seat together. Vesting pauses during gaps and resumes when you re-engage.</p>
+
+    <hr class="rule">
+
+    <h2>If you leave</h2>
+    <p>Three scenarios, three outcomes.</p>
+    <ul class="bare">
+      <li><strong>Before the 6-month cliff:</strong> if you walk, you forfeit everything. No partial vesting.</li>
+      <li><strong>After the cliff (voluntary exit or no-cause termination):</strong> your vested Cut A is yours and pays out at any future liquidity event, even years after you've left. Unvested Cut A goes back to the pool. Cut B stops the month you're no longer actively engaged.</li>
+      <li><strong>Termination for cause</strong> (narrow definition in the letter: material breach, fraud, willful misconduct): you forfeit everything, vested and unvested.</li>
+    </ul>
+    <p>If Dear shuts down rather than sells, your vested Cut A stays yours but there's nothing to pay out from. The vested portion only converts to cash on an actual liquidity event.</p>
 
     <hr class="rule">
 
@@ -803,10 +822,12 @@
     var TIER1_TOP = 1000;
     var TIER2_TOP = 5000;
     var TIER3_TOP = 25000;
+    var TIER4_TOP = 250000;
     var TIER1_RATE = 0.02;
     var TIER2_RATE = 0.05;
     var TIER3_RATE = 0.08;
     var TIER4_RATE = 0.10;
+    var TIER5_RATE = 0.03;
     var ARPU = 2.50;
     var APPLE_NET = 0.85;
 
@@ -818,7 +839,7 @@
     }
 
     // Default locked equity values
-    var lockedCutA = 8;
+    var lockedCutA = 5;
 
     function getEquity() {
       if (editMode) {
@@ -855,17 +876,24 @@
 
       var t4Income = 0;
       if (netMRR > TIER3_TOP) {
-        t4Income = netMRR - TIER3_TOP;
+        t4Income = Math.min(netMRR, TIER4_TOP) - TIER3_TOP;
       }
       var t4Cut = t4Income * TIER4_RATE;
 
-      var total = t1Cut + t2Cut + t3Cut + t4Cut;
+      var t5Income = 0;
+      if (netMRR > TIER4_TOP) {
+        t5Income = netMRR - TIER4_TOP;
+      }
+      var t5Cut = t5Income * TIER5_RATE;
+
+      var total = t1Cut + t2Cut + t3Cut + t4Cut + t5Cut;
 
       var rateText;
       if (netMRR <= TIER1_TOP) rateText = '2% tier ($500-$1K range)';
       else if (netMRR <= TIER2_TOP) rateText = '2% / 5% (in $1K-$5K range)';
       else if (netMRR <= TIER3_TOP) rateText = '2% / 5% / 8% (in $5K-$25K range)';
-      else rateText = '2% / 5% / 8% / 10% (in $25K+ range)';
+      else if (netMRR <= TIER4_TOP) rateText = '2% / 5% / 8% / 10% (in $25K-$250K range)';
+      else rateText = '2% / 5% / 8% / 10% / 3% (in $250K+ range, digressive)';
 
       return { total: total, rateText: rateText };
     }
@@ -879,8 +907,10 @@
         parts = '2% × ' + fmt(TIER1_TOP - FLOOR_MRR) + ' + 5% × ' + fmt(netMRR - TIER1_TOP);
       } else if (netMRR <= TIER3_TOP) {
         parts = '2% × ' + fmt(TIER1_TOP - FLOOR_MRR) + ' + 5% × ' + fmt(TIER2_TOP - TIER1_TOP) + ' + 8% × ' + fmt(netMRR - TIER2_TOP);
-      } else {
+      } else if (netMRR <= TIER4_TOP) {
         parts = '2% × ' + fmt(TIER1_TOP - FLOOR_MRR) + ' + 5% × ' + fmt(TIER2_TOP - TIER1_TOP) + ' + 8% × ' + fmt(TIER3_TOP - TIER2_TOP) + ' + 10% × ' + fmt(netMRR - TIER3_TOP);
+      } else {
+        parts = '2% × ' + fmt(TIER1_TOP - FLOOR_MRR) + ' + 5% × ' + fmt(TIER2_TOP - TIER1_TOP) + ' + 8% × ' + fmt(TIER3_TOP - TIER2_TOP) + ' + 10% × ' + fmt(TIER4_TOP - TIER3_TOP) + ' + 3% × ' + fmt(netMRR - TIER4_TOP);
       }
       return '(' + parts + ')';
     }
