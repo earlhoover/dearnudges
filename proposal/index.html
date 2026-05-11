@@ -343,6 +343,11 @@
     .tick:last-child { transform: translateX(-100%); }
     .tick:last-child::before { left: 100%; }
 
+    .slider-ticks.tall { height: 2.6rem; }
+    .tick.row2 { top: 1.3rem; }
+    .app-ticks.tall { height: 2.4rem; }
+    .app-tick.row2 { top: 1.2rem; }
+
     .formula {
       color: var(--soft);
       font-size: 0.82em;
@@ -607,9 +612,9 @@
                 <span class="tick" style="left: 90.5%;">100M</span>
                 <span class="tick" style="left: 100%;">500M</span>
               </div>
-              <div class="app-ticks">
+              <div class="app-ticks tall">
                 <span class="app-tick" style="left: 73%;">Calm 5M</span>
-                <span class="app-tick" style="left: 89%;">Tinder 75M</span>
+                <span class="app-tick row2" style="left: 89%;">Tinder 75M</span>
                 <span class="app-tick" style="left: 97%;">LinkedIn 310M</span>
               </div>
               <div class="app-ticks-note">For reference: Facebook is 3B (~6x off the chart). WhatsApp 2.8B.</div>
@@ -623,9 +628,9 @@
           <div class="input-row">
             <div class="slider-with-ticks">
               <input type="range" id="subRate" min="0.5" max="50" step="0.5" value="4">
-              <div class="slider-ticks">
-                <span class="tick" style="left: 3%;">freemium avg</span>
-                <span class="tick" style="left: 21%;">hard paywall avg</span>
+              <div class="slider-ticks tall">
+                <span class="tick" style="left: 3%;">freemium</span>
+                <span class="tick row2" style="left: 21%;">hard paywall</span>
                 <span class="tick" style="left: 50%;">top tier</span>
               </div>
             </div>
